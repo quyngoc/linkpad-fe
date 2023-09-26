@@ -1,0 +1,29 @@
+$grid-breakpoints: (
+  'xs': 600px,
+  'sm': 960px,
+  'md': 1264px,
+  'lg': 1904px,
+);
+
+@mixin breakpoint($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (min-width: 360px) {
+      @content;
+    }
+  }
+  @if $breakpoint == tablet {
+    @media (min-width: 600px) {
+      @content;
+    }
+  }
+  @if $breakpoint == desktop {
+    @media (min-width: 960px) {
+      @content;
+    }
+  }
+  @if $breakpoint == big-desktop {
+    @media (min-width: 1264px) {
+      @content;
+    }
+  }
+}

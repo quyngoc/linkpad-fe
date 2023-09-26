@@ -1,0 +1,73 @@
+@import '@/styles/breakpoint-custom.scss';
+
+$texts: 'display' 48px 800 initial, 'head2' 36px 800 initial, 'head3' 28px 600 initial, 'head4' 20px 800 initial,
+  'title' 24px 400 initial 'body' 14px 500 initial, 'body-bold' 14px 700 initial, 'cap' 12px 400 initial,
+  'cap-med' 12px 500 initial, 'sub' 18px 400 initial, 'sub-bold' 18px 700 140%;
+
+@each $grid-name, $min-width in $grid-breakpoints {
+  @if $grid-name == 'xs' {
+    @each $text-name, $font-size, $font-weight, $line-height in $texts {
+      .text-#{$text-name} {
+        font-size: $font-size !important;
+        font-weight: $font-weight !important;
+        line-height: $line-height !important;
+      }
+    }
+  } @else {
+    @media all and (min-width: $min-width) {
+      @each $text-name, $font-size, $font-weight, $line-height in $texts {
+        .text-#{$grid-name}-#{$text-name} {
+          font-size: $font-size !important;
+          font-weight: $font-weight !important;
+          line-height: $line-height !important;
+        }
+      }
+    }
+  }
+}
+
+@each $name, $min-width in $grid-breakpoints {
+  @if $name == 'xs' {
+    @for $gap from 0 through 20 {
+      .gap-#{$gap} {
+        gap: #{$gap * 4}px;
+      }
+      .column-gap-#{$gap} {
+        display: flex;
+        flex-direction: column;
+        gap: #{$gap * 4}px;
+      }
+      .row-gap-#{$gap} {
+        display: flex;
+        gap: #{$gap * 4}px;
+      }
+    }
+  } @else {
+    @media all and (min-width: $min-width) {
+      @for $gap from 0 through 20 {
+        .gap-#{$name}-#{$gap} {
+          gap: #{$gap * 4}px;
+        }
+        .column-gap-#{$name}-#{$gap} {
+          display: flex;
+          flex-direction: column;
+          gap: #{$gap * 4}px;
+        }
+        .row-gap-#{$name}-#{$gap} {
+          display: flex;
+          gap: #{$gap * 4}px;
+        }
+      }
+    }
+  }
+}
+
+@for $line from 1 through 16 {
+  .line-clamp-#{$line} {
+    display: -webkit-box;
+    -webkit-line-clamp: #{$line};
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+  }
+}

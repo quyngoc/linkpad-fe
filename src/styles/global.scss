@@ -1,0 +1,104 @@
+.v-antialiased {
+  max-width: 1440px;
+  margin: auto;
+}
+.rounded-lgx {
+  border-radius: 16px !important;
+}
+.v-bg-white {
+  background-color: #fff;
+}
+
+.v-card-project {
+  display: flex;
+  .v-project-information {
+    display: flex;
+  }
+  .project-status {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    border-radius: 10px;
+    background-color: #fff;
+    .project-status-image {
+      position: absolute;
+      top: calc(50% - 18px);
+      left: calc(50% - 18px);
+      width: 36px;
+    }
+  }
+  .project-status.newly-detected {
+    border-bottom: 5px solid #50cc3b;
+    filter: drop-shadow(0px 0px 10px #50cc3b);
+    border: 3px solid #50cc3b;
+    border-bottom-color: #50cc3b;
+  }
+  .project-status.chaser {
+    border-bottom: 5px solid #0472ff;
+    filter: drop-shadow(0px 0px 10px #0472ff);
+    border: 3px solid #0472ff;
+    border-bottom-color: #0472ff;
+  }
+  .round-card {
+    background: #d8e5ff;
+  }
+}
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.v-body {
+  max-width: 1410px;
+  padding: 0 10px;
+  /* background-color: #f7a8a8; */
+}
+@media only screen and (max-width: 1600px) {
+  .v-body {
+    max-width: 1410px;
+  }
+}
+@media only screen and (max-width: 1440px) {
+  .v-body {
+    max-width: 1280px;
+  }
+}
+@media only screen and (max-width: 1280px) {
+  .v-body {
+    max-width: 1140px;
+  }
+}
+@media only screen and (max-width: 1079px) {
+}
+@media only screen and (max-width: 960px) {
+}
+@media only screen and (max-width: 767px) {
+}
+@media only screen and (max-width: 575px) {
+}
+
+@media only screen and (max-width: 575px) {
+  .v-card-project {
+    .v-project-information {
+      display: block;
+    }
+    p {
+      line-height: 20px;
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .project-status {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      border-bottom-width: 2px;
+      border-radius: 6px;
+      .project-status-image {
+        top: calc(50% - 12px);
+        left: calc(50% - 12px);
+        width: 24px;
+      }
+    }
+  }
+}
