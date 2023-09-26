@@ -116,7 +116,7 @@
               <v-img :src="require('@/assets/logo/momo-logo.png')" max-height="48" max-width="48"> </v-img>
               <div class="d-flex flex-column">
                 <div style="font-size: 20px; font-weight: 700;">{{ vm.userTier.name }}</div>
-                <div style="font-size: 14px; font-weight: 500;">Guaranteed Allocation</div>
+                <div style="font-size: 14px; font-weight: 500;">{{ vm.userTier.allocationType }}</div>
               </div>
             </div>
 

@@ -7,5 +7,6 @@ export interface TierModel {
   requiredAmount?: FixedNumber
   duration?: string
   allocationSize?: FixedNumber
+  allocationType?: string
   color?: string
 }

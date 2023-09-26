@@ -13,61 +13,48 @@ export const noTier: TierModel = {
   requiredAmount: FixedNumber.from('0'),
   duration: '15 days',
   allocationSize: FixedNumber.from('0'),
+  allocationType: 'FCFS',
   color: '#16182D'
 }
-export const friendTier: TierModel = {
+export const tier1: TierModel = {
   index: 1,
-  type: 'friend',
-  name: "MOMO's Friend",
-  requiredAmount: FixedNumber.from('100000000'),
+  type: 'tier1',
+  name: 'Tier 1',
+  requiredAmount: FixedNumber.from('10000'),
   duration: '15 days',
   allocationSize: FixedNumber.from('100'),
+  allocationType: 'FCFS',
   color: '#00AAF3'
 }
-export const communityTier: TierModel = {
+export const tier2: TierModel = {
   index: 2,
-  type: 'community',
-  name: "MOMO's Community",
-  requiredAmount: FixedNumber.from('500000000'),
+  type: 'tier2',
+  name: 'Tier 2',
+  requiredAmount: FixedNumber.from('20000'),
   duration: '15 days',
-  allocationSize: FixedNumber.from('500'),
+  allocationSize: FixedNumber.from('200'),
+  allocationType: 'FCFS',
   color: '#009988'
 }
-export const familyTier: TierModel = {
+export const tier3: TierModel = {
   index: 3,
-  type: 'family',
-  name: "MOMO's Family",
-  requiredAmount: FixedNumber.from('1000000000'),
+  type: 'tier3',
+  name: 'Tier 3',
+  requiredAmount: FixedNumber.from('50000'),
   duration: '15 days',
-  allocationSize: FixedNumber.from('1000'),
+  allocationSize: FixedNumber.from('500'),
+  allocationType: 'Guaranteed',
   color: '#FE9800'
 }
-export const loverTier: TierModel = {
+export const tier4: TierModel = {
   index: 4,
-  type: 'lover',
-  name: "MOMO's Lover",
-  requiredAmount: FixedNumber.from('2500000000'),
+  type: 'tier4',
+  name: 'Tier 4',
+  requiredAmount: FixedNumber.from('100000'),
   duration: '15 days',
-  allocationSize: FixedNumber.from('2500'),
+  allocationSize: FixedNumber.from('2000'),
+  allocationType: 'Guaranteed',
   color: '#FF5190'
 }
-export const mammaTier: TierModel = {
-  index: 5,
-  type: 'mamma',
-  name: "MOMO's Mamma",
-  requiredAmount: FixedNumber.from('5000000000'),
-  duration: '15 days',
-  allocationSize: FixedNumber.from('5000'),
-  color: '#844AFF'
-}
-export const papaTier: TierModel = {
-  index: 6,
-  type: 'papa',
-  name: "MOMO's Papa",
-  requiredAmount: FixedNumber.from('10000000000'),
-  duration: '15 days',
-  allocationSize: FixedNumber.from('12000'),
-  color: '#3E53B5'
-}
 
-export const TIERS: TierModel[] = [noTier, friendTier, communityTier, familyTier, loverTier, mammaTier, papaTier]
+export const TIERS: TierModel[] = [noTier, tier1, tier2, tier3, tier4]

@@ -1,5 +1,5 @@
 import { snackController } from '@/components/snack-bar/snack-bar-controller'
-import { communityTier, familyTier, friendTier, loverTier, mammaTier, noTier, papaTier, Zero } from '@/constants'
+import { tier2, tier3, tier1, tier4, noTier, Zero } from '@/constants'
 import { bigNumberHelper } from '@/helpers/bignumber-helper'
 import { promiseHelper } from '@/helpers/promise-helper'
 import { StakingHandler, UserInfo } from '@/helpers/staking-handler'
@@ -195,12 +195,10 @@ export class StakingViewModel {
   }
 
   getTier(amount: FixedNumber) {
-    if (bigNumberHelper.gte(amount, papaTier.requiredAmount)) return papaTier
-    else if (bigNumberHelper.gte(amount, mammaTier.requiredAmount)) return mammaTier
-    else if (bigNumberHelper.gte(amount, loverTier.requiredAmount)) return loverTier
-    else if (bigNumberHelper.gte(amount, familyTier.requiredAmount)) return familyTier
-    else if (bigNumberHelper.gte(amount, communityTier.requiredAmount)) return communityTier
-    else if (bigNumberHelper.gte(amount, friendTier.requiredAmount)) return friendTier
+    if (bigNumberHelper.gte(amount, tier4.requiredAmount)) return tier4
+    else if (bigNumberHelper.gte(amount, tier3.requiredAmount)) return tier3
+    else if (bigNumberHelper.gte(amount, tier2.requiredAmount)) return tier2
+    else if (bigNumberHelper.gte(amount, tier1.requiredAmount)) return tier1
     return noTier
   }
 

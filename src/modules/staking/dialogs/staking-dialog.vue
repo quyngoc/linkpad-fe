@@ -74,7 +74,7 @@
           <v-sheet :color="vm.estimateUserTier.color" rounded="lg" class="pa-6">
             <div class="d-flex align-center gap-3 mb-4">
               <div style="font-size: 20px; font-weight: 700;">{{ vm.estimateUserTier.name }}</div>
-              <div style="font-size: 14px; font-weight: 500;">Guaranteed Allocation</div>
+              <div style="font-size: 14px; font-weight: 500;">{{ vm.estimateUserTier.allocationType }}</div>
             </div>
 
             <div class="d-flex flex-column gap-2 font-weight-medium" style="font-size: 14px;">
