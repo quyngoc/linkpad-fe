@@ -9,7 +9,7 @@ export const adminWallets = ['0xDDfb3051B95170B7c4a1a3f5dEa12444870a4808']
 export const noTier: TierModel = {
   index: 0,
   type: 'no-tier',
-  name: 'No Tier',
+  name: 'Tier 0',
   requiredAmount: FixedNumber.from('0'),
   duration: '30 days',
   allocationSize: FixedNumber.from('0'),

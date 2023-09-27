@@ -37,7 +37,7 @@
         <div v-if="vm.isDialogStaking">
           <div class="d-flex justify-space-between mb-1">
             <div style="font-size: 14px;">Stake amount</div>
-            <div style="font-size: 14px;" class="light2--text">
+            <div style="font-size: 14px;" class="text-end light2--text">
               Balance: {{ vm.userTokenBalance | round(5) }} LINKPAD
             </div>
           </div>
@@ -71,7 +71,7 @@
         <v-sheet v-if="vm.isDialogStaking" color="#1E203D" rounded="lg" class="pa-2">
           <div class="d-flex justify-space-between ma-4">
             <div>Total stake</div>
-            <div class="font-weight-bold">{{ vm.estimateTotalStake | formatNumber(5) }} LINKPAD</div>
+            <div class="text-end font-weight-bold">{{ vm.estimateTotalStake | formatNumber(5) }} LINKPAD</div>
           </div>
           <v-sheet color="dark3" rounded="lg" class="pa-6">
             <div class="d-flex align-center gap-3 mb-4">
