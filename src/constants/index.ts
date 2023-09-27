@@ -11,7 +11,7 @@ export const noTier: TierModel = {
   type: 'no-tier',
   name: 'No Tier',
   requiredAmount: FixedNumber.from('0'),
-  duration: '15 days',
+  duration: '30 days',
   allocationSize: FixedNumber.from('0'),
   allocationType: 'FCFS',
   color: '#16182D'
@@ -21,7 +21,7 @@ export const tier1: TierModel = {
   type: 'tier1',
   name: 'Tier 1',
   requiredAmount: FixedNumber.from('10000'),
-  duration: '15 days',
+  duration: '30 days',
   allocationSize: FixedNumber.from('100'),
   allocationType: 'FCFS',
   color: '#00AAF3'
@@ -31,7 +31,7 @@ export const tier2: TierModel = {
   type: 'tier2',
   name: 'Tier 2',
   requiredAmount: FixedNumber.from('20000'),
-  duration: '15 days',
+  duration: '30 days',
   allocationSize: FixedNumber.from('200'),
   allocationType: 'FCFS',
   color: '#009988'
@@ -41,7 +41,7 @@ export const tier3: TierModel = {
   type: 'tier3',
   name: 'Tier 3',
   requiredAmount: FixedNumber.from('50000'),
-  duration: '15 days',
+  duration: '30 days',
   allocationSize: FixedNumber.from('500'),
   allocationType: 'Guaranteed',
   color: '#FE9800'
@@ -51,7 +51,7 @@ export const tier4: TierModel = {
   type: 'tier4',
   name: 'Tier 4',
   requiredAmount: FixedNumber.from('100000'),
-  duration: '15 days',
+  duration: '30 days',
   allocationSize: FixedNumber.from('2000'),
   allocationType: 'Guaranteed',
   color: '#FF5190'

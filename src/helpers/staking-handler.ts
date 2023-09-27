@@ -47,7 +47,7 @@ export class StakingHandler {
   web3: any
   // apyConfigs: ApyConfig[] = [
   //   {
-  //     duration: 2 * 60, // 15 days
+  //     duration: 2 * 60, // 2m
   //     apy: FixedNumber.from('150') // 150%
   //   }
   // ]

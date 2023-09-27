@@ -108,10 +108,12 @@ export class StakingViewModel {
     // this.getUserRewardAmount();
     const lockedAmount = yield this.stakingHandler?.getTotalLockedAmount()
     this.totalLockedAmount = lockedAmount
-    pancakePriceHelper.getTokenPrice().then(p => {
-      runInAction(() => (this.tokenPrice = pancakePriceHelper.tokenPriceBUSD))
-    })
-    this.totalValueLocked = this.totalLockedAmount.mulUnsafe(FixedNumber.from(this.tokenPrice))
+    ///
+    // pancakePriceHelper.getTokenPrice().then(p => {
+    //   runInAction(() => (this.tokenPrice = pancakePriceHelper.tokenPriceBUSD))
+    // })
+    // this.totalValueLocked = this.totalLockedAmount.mulUnsafe(FixedNumber.from(this.tokenPrice))
+    ///
     // this.userStakedAmount = yield this.stakingHandler.getUserStakeBalance(0, walletStore.account)
   }
 

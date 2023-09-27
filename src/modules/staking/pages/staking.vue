@@ -15,7 +15,7 @@
                   </div>
                 </div>
               </v-col>
-              <v-col cols="12" md="12">
+              <!-- <v-col cols="12" md="12">
                 <div class="d-flex align-center gap-2 mb-4">
                   <v-img :src="require('@/assets/logo/logo.png')" max-height="32" max-width="32"></v-img>
                   <div>
@@ -23,7 +23,7 @@
                     <div class="text-head4 font-weight-bold">${{ vm.totalValueLocked | formatNumber(5) }}</div>
                   </div>
                 </div>
-              </v-col>
+              </v-col> -->
               <v-col cols="12" md="12">
                 <div class="d-flex align-center gap-2 mb-4">
                   <v-img :src="require('@/assets/logo/logo.png')" max-height="32" max-width="32"></v-img>
