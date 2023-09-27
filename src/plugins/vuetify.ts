@@ -39,6 +39,7 @@ export default new Vuetify({
       },
       dark: {
         dark2: '#16182D',
+        dark3: '#2a2342',
         light2: '#9CA0D2',
         white: '#FFFFFF',
         blue: '#02E2E3',

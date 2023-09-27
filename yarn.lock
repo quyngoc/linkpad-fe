@@ -2735,6 +2735,19 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@overage69/pancake-sdk-v2@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@overage69/pancake-sdk-v2/-/pancake-sdk-v2-3.0.0.tgz#a0e875e0f79d5bda72d7e664fdf8198384c880d0"
+  integrity sha512-JwqULb5UcNkikj5pSBUlYeszSWaoFVkDjfs6sevkRXvRpVwfWKpiOJ/IMuSnNbrYI6n/4LpxZpvn7CSrSUHicw==
+  dependencies:
+    "@pancakeswap-libs/pancake-swap-core" "^0.1.0"
+    big.js "^5.2.2"
+    decimal.js-light "^2.5.0"
+    jsbi "^3.1.1"
+    tiny-invariant "^1.1.0"
+    tiny-warning "^1.0.3"
+    toformat "^2.0.0"
+
 "@pancakeswap-libs/pancake-swap-core@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@pancakeswap-libs/pancake-swap-core/-/pancake-swap-core-0.1.0.tgz#6957f1fa02170531a2ffbf95f2c0e145e9d21bc2"

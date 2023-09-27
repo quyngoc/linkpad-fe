@@ -20,7 +20,7 @@
                   <v-img :src="require('@/assets/logo/logo.png')" max-height="32" max-width="32"></v-img>
                   <div>
                     <div class="light2--text" style="font-size: 14px">Total value locked (TVL)</div>
-                    <div class="text-head4 font-weight-bold">${{ vm.tvl | formatNumber(5) }}</div>
+                    <div class="text-head4 font-weight-bold">${{ vm.totalValueLocked | formatNumber(5) }}</div>
                   </div>
                 </div>
               </v-col>
@@ -209,7 +209,7 @@ export default class Staking extends Vue {
   @Provide() vm = new StakingViewModel()
   @Ref('stakingDialog') stakingDialogController: any
   walletStore = walletStore
-  chainID = process.env.VUE_APP_FARM_CHAIN_ID
+  chainID = process.env.VUE_APP_CHAIN_ID
   tiers = TIERS.slice(1)
 
   requestStake() {
@@ -221,10 +221,10 @@ export default class Staking extends Vue {
   }
 
   viewLPContract() {
-    window.open(`https://etherscan.io/address/0x89D780a512Ea238e72Da4b9c1a621b693681c15a`, '_blank')
+    window.open(`https://bscscan.com/address/0xd370029c625BC09f035d0eCBBa3bF2072a810CaB`, '_blank')
   }
   getBSL() {
-    window.open(`https://app.uniswap.org/#/swap?outputCurrency=0x08d0222a206d1aee59a9b66969c04fd1e8a0f864`, '_blank')
+    window.open(`https://pancakeswap.finance/swap?outputCurrency=0xd370029c625BC09f035d0eCBBa3bF2072a810CaB`, '_blank')
   }
 
   get isChainIdValid() {

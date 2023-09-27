@@ -1,6 +1,7 @@
 import { snackController } from '@/components/snack-bar/snack-bar-controller'
 import { tier2, tier3, tier1, tier4, noTier, Zero } from '@/constants'
 import { bigNumberHelper } from '@/helpers/bignumber-helper'
+import { pancakePriceHelper } from '@/helpers/pancakePriceHelper'
 import { promiseHelper } from '@/helpers/promise-helper'
 import { StakingHandler, UserInfo } from '@/helpers/staking-handler'
 import { apiService } from '@/services/api-service'
@@ -38,6 +39,10 @@ export class StakingViewModel {
   @observable showHavestDialog = false
   @observable userInfo: UserInfo = {}
 
+  @observable tokenPrice = FixedNumber.from('0')
+  @observable totalValueLocked = FixedNumber.from('0')
+  @observable apy = Zero
+
   constructor() {
     this.loadData()
 
@@ -59,20 +64,23 @@ export class StakingViewModel {
     this._disposers.forEach(d => d())
   }
 
-  async loadData() {
+  @asyncAction *loadData() {
     const stakingHandler = new StakingHandler()
     this.stakingHandler = stakingHandler
-    stakingHandler.load()
+    yield stakingHandler.load()
+    this.apy = stakingHandler.apy
+    this.fetchPoolInfo()
+    this.getUserInfo()
+
     if (this.destroyed) return
 
     this.lockDuration = stakingHandler.lockDuration!
-    this.fetchPoolInfo()
     this.getUserTokenBalance()
 
-    timer(0, 120000)
+    timer(0, 10000)
       .pipe(takeUntil(this._unsubcrible))
       .subscribe(() => {
-        this.getStakePoolInfo()
+        //
       })
 
     this._disposers.push(
@@ -87,6 +95,7 @@ export class StakingViewModel {
               .pipe(takeUntil(this._unsubcrible))
               .subscribe(() => {
                 this.getPendingReward()
+                this.fetchPoolInfo()
               })
           }
         }
@@ -95,8 +104,15 @@ export class StakingViewModel {
   }
 
   @asyncAction *fetchPoolInfo() {
-    yield Promise.all([this.getStakePoolInfo(), this.getUserInfo()])
-    this.getPendingReward()
+    // this.getUserLastStaleTime();
+    // this.getUserRewardAmount();
+    const lockedAmount = yield this.stakingHandler?.getTotalLockedAmount()
+    this.totalLockedAmount = lockedAmount
+    pancakePriceHelper.getTokenPrice().then(p => {
+      runInAction(() => (this.tokenPrice = pancakePriceHelper.tokenPriceBUSD))
+    })
+    this.totalValueLocked = this.totalLockedAmount.mulUnsafe(FixedNumber.from(this.tokenPrice))
+    // this.userStakedAmount = yield this.stakingHandler.getUserStakeBalance(0, walletStore.account)
   }
 
   @asyncAction *getUserInfo() {
@@ -108,12 +124,6 @@ export class StakingViewModel {
     }
   }
 
-  @asyncAction *getStakePoolInfo() {
-    const stakingInfo = yield apiService.getStakePoolInfo()
-    this.totalLockedAmount = FixedNumber.from(stakingInfo.lockedAmount)
-    this.tvl = FixedNumber.from(stakingInfo.tvl)
-  }
-
   @asyncAction *getUserTokenBalance() {
     if (walletStore.account) {
       const userTokenBalance = yield this.stakingHandler?.getUserTokenBalance(walletStore.account)
@@ -121,10 +131,10 @@ export class StakingViewModel {
     }
   }
 
-  @action.bound getPendingReward() {
-    if (this.userInfo.amount) {
+  @asyncAction *getPendingReward() {
+    if (walletStore.account && this.userInfo.amount) {
       try {
-        const pendingReward = this.stakingHandler?.estimatedReward(this.userInfo as any)
+        const pendingReward = yield this.stakingHandler?.getPendingReward(walletStore.account)
         this.pendingReward = pendingReward!
       } catch (error) {
         this.pendingReward = Zero
@@ -171,6 +181,7 @@ export class StakingViewModel {
         yield this.stakingHandler!.unstake(walletStore.account)
         snackController.success('Unstake Linkpad successful')
       }
+      this.getUserInfo()
       this.fetchPoolInfo()
       this.cancelStakeDialog()
     } catch (err) {
@@ -185,8 +196,8 @@ export class StakingViewModel {
     try {
       yield this.stakingHandler?.havest(walletStore.account)
       snackController.success('Harvest successful')
+      this.getPendingReward()
       this.setShowHavestDialog(false)
-      this.fetchPoolInfo()
     } catch (err) {
       snackController.commonError(err)
     } finally {
@@ -276,9 +287,5 @@ export class StakingViewModel {
     } catch (error) {
       return this.userTier
     }
-  }
-
-  @computed get apy() {
-    return this.stakingHandler?.apyConfigs[0].apy
   }
 }

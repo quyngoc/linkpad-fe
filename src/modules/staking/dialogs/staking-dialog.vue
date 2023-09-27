@@ -75,6 +75,11 @@
           </div>
           <v-sheet :color="vm.estimateUserTier.color" rounded="lg" class="pa-6">
             <div class="d-flex align-center gap-3 mb-4">
+              <v-img
+                :src="require(`@/assets/images/tier${vm.estimateUserTier.index}.png`)"
+                max-height="32"
+                max-width="32"
+              ></v-img>
               <div style="font-size: 20px; font-weight: 700;">{{ vm.estimateUserTier.name }}</div>
               <div style="font-size: 14px; font-weight: 500;">{{ vm.estimateUserTier.allocationType }}</div>
             </div>

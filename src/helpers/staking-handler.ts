@@ -4,10 +4,12 @@ import moment, { Moment } from 'moment'
 import Web3 from 'web3'
 import { blockchainHandler } from '@/blockchain'
 import { promiseHelper } from './promise-helper'
-import { YEAR_IN_SECONDS, fn100 } from '@/constants'
+import { YEAR_IN_SECONDS, Zero, fn100 } from '@/constants'
 import { bigNumberHelper } from './bignumber-helper'
+import { loadingController } from '@/components/global-loading/global-loading-controller'
+import { snackController } from '@/components/snack-bar/snack-bar-controller'
 
-const web3 = blockchainHandler.getWeb3(process.env.VUE_APP_FARM_CHAIN_ID)!
+const web3 = blockchainHandler.getWeb3(process.env.VUE_APP_CHAIN_ID)!
 
 async function sendRequest(fx, from) {
   return await new Promise((resolve, reject) => {
@@ -37,29 +39,46 @@ export class StakingHandler {
   stakeContract: any
   poolTokenContract: any
   lockDuration?: moment.Duration
+  apy = Zero
+  totalAmount = Zero
 
   rewardToken?: string
   poolToken?: string
   web3: any
-  apyConfigs: ApyConfig[] = [
-    {
-      duration: 15 * 24 * 60 * 60, // 15 days
-      apy: FixedNumber.from('150') // 150%
-    }
-  ]
+  // apyConfigs: ApyConfig[] = [
+  //   {
+  //     duration: 2 * 60, // 15 days
+  //     apy: FixedNumber.from('150') // 150%
+  //   }
+  // ]
   rewardDecimals = +process.env.VUE_APP_STAKE_REWARD_DECIMAL!
 
   constructor() {
     this.stakeContract = new web3.eth.Contract(require('./stake.abi.json'), process.env.VUE_APP_STAKE_ADDRESS)
   }
 
-  load() {
-    // const [apyConfigs] = await blockchainHandler.etherBatchRequest(web3, [this.stakeContract.methods.getApyConfigs()])
-    // console.log('apyConfigs: ', apyConfigs)
+  async load() {
+    loadingController.increaseRequest()
+    try {
+      const [totalAmount, apyConfigs] = await blockchainHandler.etherBatchRequest(web3, [
+        this.stakeContract.methods.totalAmount(),
+        this.stakeContract.methods.getApyConfigs()
+      ])
+      this.totalAmount = bigNumberHelper.fromDecimals(totalAmount)
+      this.poolToken = this.rewardToken = web3.utils.toChecksumAddress(`${process.env.VUE_APP_STAKE_REWARD_ADDRESS}`)
+      this.poolTokenContract = new web3.eth.Contract(require('./erc20.abi.json'), this.poolToken)
+      this.lockDuration = moment.duration((apyConfigs as any)[0].duration, 'seconds')
+      this.apy = bigNumberHelper.fromDecimals((apyConfigs as any)[0].apy)
+    } catch (error) {
+      snackController.commonError(error)
+    } finally {
+      loadingController.decreaseRequest()
+    }
+  }
 
-    this.poolToken = this.rewardToken = web3.utils.toChecksumAddress(`${process.env.VUE_APP_STAKE_REWARD_ADDRESS}`)
-    this.poolTokenContract = new web3.eth.Contract(require('./erc20.abi.json'), this.poolToken)
-    this.lockDuration = moment.duration(this.apyConfigs[0].duration, 'seconds')
+  async getTotalLockedAmount() {
+    const amount = await this.stakeContract.methods.totalAmount().call()
+    return bigNumberHelper.fromDecimals(amount)
   }
 
   injectMetamask(web3: Web3) {
@@ -96,7 +115,7 @@ export class StakingHandler {
   async stake(account, amount) {
     const f = this.stakeContract.methods.deposit(
       bigNumberHelper.toDecimalString(`${amount.toString()}`, this.rewardDecimals),
-      this.apyConfigs![0].duration
+      this.lockDuration?.asSeconds()
     )
 
     await sendRequest(f, account)
@@ -128,20 +147,14 @@ export class StakingHandler {
     }
   }
 
-  estimatedReward({ amount, rewardAmount, lastRewardTime }) {
-    const timeDiff = FixedNumber.from(`${Date.now() / 1000 - lastRewardTime}`)
-
-    const pendingReward = timeDiff
-      .mulUnsafe(amount)
-      .divUnsafe(FixedNumber.from(YEAR_IN_SECONDS.toString()))
-      .mulUnsafe(this.apyConfigs[0].apy!)
-      .divUnsafe(fn100)
-    return pendingReward.addUnsafe(rewardAmount)
-  }
-
   async getUserTokenBalance(account) {
     const allowance = await this.poolTokenContract.methods.balanceOf(account).call()
     return FixedNumber.from(`${web3.utils.fromWei(allowance)}`)
+  }
+
+  async getPendingReward(account) {
+    const amount = await this.stakeContract.methods.getPendingReward(account).call()
+    return FixedNumber.from(`${web3.utils.fromWei(amount)}`)
   }
 }
 
