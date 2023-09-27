@@ -188,50 +188,50 @@ a {
   background: linear-gradient(0deg, #170f32 69.33%, #16182d 106.63%) !important;
 }
 .gradient-btn {
-  border-radius: 100px;
-  overflow: hidden;
-  position: relative;
-  transition: all 200ms ease;
-  // background: linear-gradient(135deg, #fa26ca 0%, #712af9 100%) !important;
-}
-.gradient-btn span.v-btn__content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
-}
-.gradient-btn::after {
+  // border-radius: 100px;
+  // overflow: hidden;
+  // position: relative;
+  // transition: all 200ms ease;
   background: linear-gradient(135deg, #fa26ca 0%, #712af9 100%) !important;
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  transition: all 200ms ease;
 }
-.gradient-btn::before {
-  content: '';
-  position: absolute;
-  top: 0 !important;
-  left: 50% !important;
-  width: 0;
-  height: 100%;
-  background: linear-gradient(90.99deg, #fdce39 0.27%, #fd8963 30%, #ed5174 98.69%) !important;
-  z-index: 2;
-  transition: all 200ms ease !important;
-}
-.gradient-btn:hover::before {
-  width: 100% !important;
-  left: 0 !important;
-  transition: all 200ms ease !important;
-}
+// .gradient-btn span.v-btn__content {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   z-index: 3;
+// }
+// .gradient-btn::after {
+//   background: linear-gradient(135deg, #fa26ca 0%, #712af9 100%) !important;
+//   content: '';
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   z-index: 1;
+//   transition: all 200ms ease;
+// }
+// .gradient-btn::before {
+//   content: '';
+//   position: absolute;
+//   top: 0 !important;
+//   left: 50% !important;
+//   width: 0;
+//   height: 100%;
+//   background: linear-gradient(90.99deg, #fdce39 0.27%, #fd8963 30%, #ed5174 98.69%) !important;
+//   z-index: 2;
+//   transition: all 200ms ease !important;
+// }
+// .gradient-btn:hover::before {
+//   width: 100% !important;
+//   left: 0 !important;
+//   transition: all 200ms ease !important;
+// }
 .position-relative {
   position: relative !important;
 }
