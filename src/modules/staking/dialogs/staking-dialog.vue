@@ -21,7 +21,7 @@
           <div class="d-flex flex-column gap-2 " style="font-size: 14px;">
             <div class="d-flex justify-space-between">
               <div>Your staked</div>
-              <div class="font-weight-bold">{{ vm.stakedAmount | round(5) }} MOMO</div>
+              <div class="font-weight-bold">{{ vm.stakedAmount | round(5) }} LINKPAD</div>
             </div>
             <div class="d-flex justify-space-between">
               <div>Lock time</div>
@@ -37,7 +37,9 @@
         <div v-if="vm.isDialogStaking">
           <div class="d-flex justify-space-between mb-1">
             <div style="font-size: 14px;">Stake amount</div>
-            <div style="font-size: 14px;" class="light2--text">Balance: {{ vm.userTokenBalance | round(5) }} MOMO</div>
+            <div style="font-size: 14px;" class="light2--text">
+              Balance: {{ vm.userTokenBalance | round(5) }} LINKPAD
+            </div>
           </div>
           <v-text-field
             solo
@@ -49,7 +51,7 @@
             @input="vm.changeStakeDialogInput"
           >
             <template v-slot:append>
-              <div class="text-head4 white--text">MOMO</div>
+              <div class="text-head4 white--text">LINKPAD</div>
             </template>
           </v-text-field>
         </div>
@@ -58,7 +60,7 @@
             <div style="font-size: 14px;">Unstake amount</div>
           </div>
           <span class="d-flex justify-center mt-4" background-color="#1E203D">
-            <div class="text-head4 white--text">{{ vm.stakedAmount | round(5) }} MOMO</div>
+            <div class="text-head4 white--text">{{ vm.stakedAmount | round(5) }} LINKPAD</div>
           </span>
         </div>
 
@@ -69,7 +71,7 @@
         <v-sheet v-if="vm.isDialogStaking" color="#1E203D" rounded="lg" class="pa-2">
           <div class="d-flex justify-space-between ma-4">
             <div>Total stake</div>
-            <div class="font-weight-bold">{{ vm.estimateTotalStake | formatNumber(5) }} MOMO</div>
+            <div class="font-weight-bold">{{ vm.estimateTotalStake | formatNumber(5) }} LINKPAD</div>
           </div>
           <v-sheet :color="vm.estimateUserTier.color" rounded="lg" class="pa-6">
             <div class="d-flex align-center gap-3 mb-4">

@@ -2,31 +2,31 @@
   <div class="fill-height background-1">
     <div style="max-width: 800px" class="mx-auto py-16 px-4">
       <v-row>
-        <v-col cols="12">
-          <v-sheet color="dark2" rounded="lg" class="pa-6">
-            <div style="font-size: 24px; font-weight: 800; margin-bottom: 24px;">MOMO Stats</div>
+        <v-col cols="12" md="6">
+          <v-sheet color="dark2" rounded="lg" class="pa-6 mb-4">
+            <div style="font-size: 24px; font-weight: 800; margin-bottom: 24px;">Staking Details</div>
             <v-row dense>
-              <v-col cols="12" md="4">
-                <div class="d-flex align-center gap-2">
-                  <v-img :src="require('@/assets/logo/momo-logo.png')" max-height="32" max-width="32"></v-img>
+              <v-col cols="12" md="12">
+                <div class="d-flex align-center gap-2 mb-6">
+                  <v-img :src="require('@/assets/logo/logo.png')" max-height="32" max-width="32"></v-img>
                   <div>
                     <div class="light2--text" style="font-size: 14px">Total stake</div>
-                    <div class="text-head4 font-weight-bold">{{ vm.totalLockedAmount | formatNumber(0) }} MOMO</div>
+                    <div class="text-head4 font-weight-bold">{{ vm.totalLockedAmount | formatNumber(0) }} Linkpad</div>
                   </div>
                 </div>
               </v-col>
-              <v-col cols="12" md="4">
-                <div class="d-flex align-center gap-2">
-                  <v-img :src="require('@/assets/logo/momo-logo.png')" max-height="32" max-width="32"></v-img>
+              <v-col cols="12" md="12">
+                <div class="d-flex align-center gap-2 mb-4">
+                  <v-img :src="require('@/assets/logo/logo.png')" max-height="32" max-width="32"></v-img>
                   <div>
                     <div class="light2--text" style="font-size: 14px">Total value locked (TVL)</div>
                     <div class="text-head4 font-weight-bold">${{ vm.tvl | formatNumber(5) }}</div>
                   </div>
                 </div>
               </v-col>
-              <v-col cols="12" md="4">
-                <div class="d-flex align-center gap-2">
-                  <v-img :src="require('@/assets/logo/momo-logo.png')" max-height="32" max-width="32"></v-img>
+              <v-col cols="12" md="12">
+                <div class="d-flex align-center gap-2 mb-4">
+                  <v-img :src="require('@/assets/logo/logo.png')" max-height="32" max-width="32"></v-img>
                   <div>
                     <div class="light2--text" style="font-size: 14px">APY</div>
                     <div class="text-head4 font-weight-bold">{{ vm.apy | round(0) }}%</div>
@@ -35,21 +35,26 @@
               </v-col>
             </v-row>
           </v-sheet>
+          <v-sheet color="dark2" rounded="lg" class="pa-4 mb-4">
+            <div class="d-flex justify-center gap-16">
+              <div class="cursor-pointer d-flex align-center blue--text" @click="getBSL">
+                Get Linkpad
+              </div>
+              <div class="cursor-pointer d d-flex align-center blue--text" @click="viewLPContract">
+                View Contract
+              </div>
+            </div>
+          </v-sheet>
         </v-col>
         <v-col cols="12" md="6">
           <v-sheet color="dark2" rounded="lg" class="pa-6">
-            <div style="font-size: 24px; font-weight: 800; margin-bottom: 24px;">My MOMO Staking</div>
-
-            <v-sheet color="#1E203D" rounded="lg" class="pa-4 mb-4">
+            <div style="font-size: 24px; font-weight: 800; margin-bottom: 24px;">Your Staking</div>
+            <v-sheet color="#1E203D" rounded="lg" class="pa-4 mb-6">
               <div class="d-flex flex-column gap-2">
                 <div class="d-flex justify-space-between align-center">
                   <div class="" style="font-size: 14px;">Your Staked</div>
-                  <div class="text-body-bold text-end">{{ vm.stakedAmount | round(5) }} MOMO</div>
+                  <div class="text-body-bold text-end">{{ vm.stakedAmount | round(5) }} Linkpad</div>
                 </div>
-                <!-- <div class="d-flex justify-space-between">
-                  <div class="font-weight-medium" style="font-size: 14px;">Staking period</div>
-                  <div class="text-body-bold">{{ vm.lockInDays }} days</div>
-                </div> -->
                 <div class="d-flex justify-space-between align-center">
                   <div class="" style="font-size: 14px;">Lock token for</div>
                   <div class="text-body-bold text-end">{{ vm.lockInDays }} days</div>
@@ -61,7 +66,7 @@
               </div>
             </v-sheet>
 
-            <v-sheet color="#1E203D" rounded="lg" class="pa-4 mb-4">
+            <v-sheet color="#1E203D" rounded="lg" class="pa-4 mb-6">
               <div class="d-flex justify-space-between align-center">
                 <div>
                   <div class="light2--text" style="font-size: 14px;">Pending reward</div>
@@ -100,55 +105,83 @@
               </div>
             </connect-metamask>
 
-            <div class="d-flex justify-center mt-6 gap-16">
+            <!-- <div class="d-flex justify-center mt-6 gap-16">
               <div class="cursor-pointer d-flex align-center blue--text" @click="getBSL">
-                Get MOMO<v-icon size="16" class="ml-1" color="blue">mdi-open-in-new</v-icon>
+                Get Linkpad<v-icon size="16" class="ml-1" color="blue">mdi-open-in-new</v-icon>
               </div>
               <div class="cursor-pointer d d-flex align-center blue--text" @click="viewLPContract">
                 View Contract<v-icon size="16" class="ml-1" color="blue">mdi-open-in-new</v-icon>
               </div>
-            </div>
+            </div> -->
           </v-sheet>
         </v-col>
-        <v-col cols="12" md="6">
-          <v-sheet :color="vm.userTier.color" rounded="lg" class="pa-6 mb-6">
-            <div class="d-flex gap-6 mb-6">
-              <v-img :src="require('@/assets/logo/momo-logo.png')" max-height="48" max-width="48"> </v-img>
+
+        <v-col cols="12">
+          <v-sheet :color="vm.userTier.color" rounded="lg" class="pa-6 mb-6 text-center">
+            <div class="d-flex full-width justify-center gap-6 mb-6">
+              <v-img
+                :src="require(`@/assets/images/tier${vm.userTier.index}.png`)"
+                max-height="48"
+                max-width="48"
+              ></v-img>
               <div class="d-flex flex-column">
                 <div style="font-size: 20px; font-weight: 700;">{{ vm.userTier.name }}</div>
                 <div style="font-size: 14px; font-weight: 500;">{{ vm.userTier.allocationType }}</div>
               </div>
             </div>
 
-            <div class="d-flex flex-column gap-2 font-weight-medium" style="font-size: 14px;">
-              <div class="d-flex justify-space-between">
-                <div>Staking Requirement</div>
+            <v-row>
+              <v-col cols="12" md="4" class="text-center">
+                <div class="font-weight-bold">Staking Requirement</div>
                 <div>{{ vm.userTier.requiredAmount | formatNumber }}</div>
-              </div>
-              <div class="d-flex justify-space-between">
-                <div>Staking period</div>
+              </v-col>
+              <v-col cols="12" md="4" class="text-center">
+                <div class="font-weight-bold">Staking period</div>
                 <div>{{ vm.userTier.duration }}</div>
-              </div>
-              <div class="d-flex justify-space-between">
-                <div>Allocation size</div>
+              </v-col>
+              <v-col cols="12" md="4" class="text-center">
+                <div class="font-weight-bold">Allocation size</div>
                 <div>{{ vm.userTier.allocationSize | usd }}</div>
-              </div>
-            </div>
+              </v-col>
+            </v-row>
           </v-sheet>
+        </v-col>
+      </v-row>
 
-          <v-sheet color="dark2" rounded="lg" style="overflow: hidden;">
-            <div class="pa-4" style="background: #1E203D">
-              <div class="d-flex justify-space-between">
-                <div class="text-body-bold">Tier</div>
-                <div style="font-size: 14px;">Staked amount</div>
-              </div>
+      <div class="d-flex justify-center font-weight-bold mb-6" style="font-size: 32px;">
+        TIERS
+      </div>
+      <v-row>
+        <v-col cols="12" md="6" v-for="tier in tiers" :key="tier.index" class="pa-4">
+          <v-sheet rounded="lg" class="pb-2 tier-bg">
+            <div class="d-flex justify-center align-center gap-2 pa-4">
+              <v-img :src="require(`@/assets/images/tier${tier.index}.png`)" max-height="48" max-width="48"></v-img>
+              <div class="text-body-bold">{{ tier.name }}</div>
             </div>
-            <div v-for="tier in tiers" :key="tier.index" class="pa-4">
-              <div class="d-flex justify-space-between">
-                <div class="text-body-bold">{{ tier.name }}</div>
-                <div style="font-size: 14px;">{{ tier.requiredAmount | formatNumber }}</div>
+            <v-sheet rounded="lg" class="mx-4 d-flex justify-space-between align-center pa-4 item-bg">
+              <div class="font-weight-bold">
+                Staking Requirement
               </div>
-            </div>
+              <div>{{ tier.requiredAmount | formatNumber }}</div>
+            </v-sheet>
+            <v-sheet rounded="lg" class="mx-4 my-2 d-flex justify-space-between align-center pa-4 item-bg">
+              <div class="font-weight-bold">
+                Allocation Weight
+              </div>
+              <div>{{ tier.allocationSize | formatNumber }}</div>
+            </v-sheet>
+            <v-sheet rounded="lg" class="mx-4 my-2 d-flex justify-space-between align-center pa-4 item-bg">
+              <div class="font-weight-bold">
+                Allocation Type
+              </div>
+              <div>{{ tier.allocationType }}</div>
+            </v-sheet>
+            <v-sheet rounded="lg" class="mx-4 my-2 d-flex justify-space-between align-center pa-4 item-bg">
+              <div class="font-weight-bold">
+                Staking Period
+              </div>
+              <div>{{ tier.duration }}</div>
+            </v-sheet>
           </v-sheet>
         </v-col>
       </v-row>
@@ -232,5 +265,11 @@ export default class Staking extends Vue {
 }
 .hover-unstake:hover * {
   font-weight: 900;
+}
+.tier-bg {
+  background-color: #2a2342 !important;
+}
+.item-bg {
+  background-color: #000000 !important;
 }
 </style>
