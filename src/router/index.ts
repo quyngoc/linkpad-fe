@@ -6,12 +6,12 @@ import VueRouter, { RouteConfig } from 'vue-router'
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
-  { path: '/', redirect: '/launch-pad' },
-  {
-    path: '/launch-pad',
-    name: 'IDOPools',
-    component: () => import('../modules/ido/pages/ido-pools.vue')
-  },
+  { path: '/', redirect: '/staking' },
+  // {
+  //   path: '/launch-pad',
+  //   name: 'IDOPools',
+  //   component: () => import('../modules/ido/pages/ido-pools.vue')
+  // },
   // {
   //   path: '/farming',
   //   name: 'Farm',
