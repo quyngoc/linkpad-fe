@@ -12,11 +12,11 @@ const routes: Array<RouteConfig> = [
     name: 'IDOPools',
     component: () => import('../modules/ido/pages/ido-pools.vue')
   },
-  {
-    path: '/farming',
-    name: 'Farm',
-    component: () => import('../modules/farm/pages/farm.vue')
-  },
+  // {
+  //   path: '/farming',
+  //   name: 'Farm',
+  //   component: () => import('../modules/farm/pages/farm.vue')
+  // },
   {
     path: '/staking',
     name: 'Staking',

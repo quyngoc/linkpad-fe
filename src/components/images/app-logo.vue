@@ -45,7 +45,7 @@ export default class AppAvatar extends Vue {
   async updateImage() {
     try {
       const val = this.avatar
-      this.url = require(`../../assets/logo/momo-logo-2.png`)
+      this.url = require(`../../assets/logo/logo-2.png`)
       if (val instanceof File) {
         this.url = URL.createObjectURL(val)
       } else if (typeof val === 'string') {
@@ -64,7 +64,7 @@ export default class AppAvatar extends Vue {
   }
 
   onLoadImgError() {
-    this.url = require(`../../assets/logo/momo-logo-2.png`)
+    this.url = require(`../../assets/logo/logo-2.png`)
   }
 }
 </script>

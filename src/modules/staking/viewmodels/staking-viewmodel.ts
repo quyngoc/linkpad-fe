@@ -166,10 +166,10 @@ export class StakingViewModel {
     try {
       if (this.isDialogStaking) {
         yield this.stakingHandler!.stake(walletStore.account, this.stakeDialogInput)
-        snackController.success('Stake MOMO successful')
+        snackController.success('Stake Linkpad successful')
       } else {
         yield this.stakingHandler!.unstake(walletStore.account)
-        snackController.success('Unstake MOMO successful')
+        snackController.success('Unstake Linkpad successful')
       }
       this.fetchPoolInfo()
       this.cancelStakeDialog()

@@ -2,31 +2,31 @@
   <div class="fill-height background-1">
     <div style="max-width: 800px" class="mx-auto py-16 px-4">
       <v-row>
-        <v-col cols="12">
-          <v-sheet color="dark2" rounded="lg" class="pa-6">
-            <div style="font-size: 24px; font-weight: 800; margin-bottom: 24px;">MOMO Stats</div>
+        <v-col cols="12" md="6">
+          <v-sheet color="dark2" rounded="lg" class="pa-6 mb-4">
+            <div style="font-size: 24px; font-weight: 800; margin-bottom: 24px;">Linkpad Stats</div>
             <v-row dense>
-              <v-col cols="12" md="4">
-                <div class="d-flex align-center gap-2">
-                  <v-img :src="require('@/assets/logo/momo-logo.png')" max-height="32" max-width="32"></v-img>
+              <v-col cols="12" md="12">
+                <div class="d-flex align-center gap-2 mb-6">
+                  <v-img :src="require('@/assets/logo/logo.png')" max-height="32" max-width="32"></v-img>
                   <div>
                     <div class="light2--text" style="font-size: 14px">Total stake</div>
-                    <div class="text-head4 font-weight-bold">{{ vm.totalLockedAmount | formatNumber(0) }} MOMO</div>
+                    <div class="text-head4 font-weight-bold">{{ vm.totalLockedAmount | formatNumber(0) }} Linkpad</div>
                   </div>
                 </div>
               </v-col>
-              <v-col cols="12" md="4">
-                <div class="d-flex align-center gap-2">
-                  <v-img :src="require('@/assets/logo/momo-logo.png')" max-height="32" max-width="32"></v-img>
+              <v-col cols="12" md="12">
+                <div class="d-flex align-center gap-2 mb-4">
+                  <v-img :src="require('@/assets/logo/logo.png')" max-height="32" max-width="32"></v-img>
                   <div>
                     <div class="light2--text" style="font-size: 14px">Total value locked (TVL)</div>
                     <div class="text-head4 font-weight-bold">${{ vm.tvl | formatNumber(5) }}</div>
                   </div>
                 </div>
               </v-col>
-              <v-col cols="12" md="4">
-                <div class="d-flex align-center gap-2">
-                  <v-img :src="require('@/assets/logo/momo-logo.png')" max-height="32" max-width="32"></v-img>
+              <v-col cols="12" md="12">
+                <div class="d-flex align-center gap-2 mb-4">
+                  <v-img :src="require('@/assets/logo/logo.png')" max-height="32" max-width="32"></v-img>
                   <div>
                     <div class="light2--text" style="font-size: 14px">APY</div>
                     <div class="text-head4 font-weight-bold">{{ vm.apy | round(0) }}%</div>
@@ -35,16 +35,13 @@
               </v-col>
             </v-row>
           </v-sheet>
-        </v-col>
-        <v-col cols="12" md="6">
           <v-sheet color="dark2" rounded="lg" class="pa-6">
-            <div style="font-size: 24px; font-weight: 800; margin-bottom: 24px;">My MOMO Staking</div>
-
+            <div style="font-size: 24px; font-weight: 800; margin-bottom: 24px;">My Linkpad Staking</div>
             <v-sheet color="#1E203D" rounded="lg" class="pa-4 mb-4">
               <div class="d-flex flex-column gap-2">
                 <div class="d-flex justify-space-between align-center">
                   <div class="" style="font-size: 14px;">Your Staked</div>
-                  <div class="text-body-bold text-end">{{ vm.stakedAmount | round(5) }} MOMO</div>
+                  <div class="text-body-bold text-end">{{ vm.stakedAmount | round(5) }} Linkpad</div>
                 </div>
                 <!-- <div class="d-flex justify-space-between">
                   <div class="font-weight-medium" style="font-size: 14px;">Staking period</div>
@@ -102,7 +99,7 @@
 
             <div class="d-flex justify-center mt-6 gap-16">
               <div class="cursor-pointer d-flex align-center blue--text" @click="getBSL">
-                Get MOMO<v-icon size="16" class="ml-1" color="blue">mdi-open-in-new</v-icon>
+                Get Linkpad<v-icon size="16" class="ml-1" color="blue">mdi-open-in-new</v-icon>
               </div>
               <div class="cursor-pointer d d-flex align-center blue--text" @click="viewLPContract">
                 View Contract<v-icon size="16" class="ml-1" color="blue">mdi-open-in-new</v-icon>
@@ -113,7 +110,7 @@
         <v-col cols="12" md="6">
           <v-sheet :color="vm.userTier.color" rounded="lg" class="pa-6 mb-6">
             <div class="d-flex gap-6 mb-6">
-              <v-img :src="require('@/assets/logo/momo-logo.png')" max-height="48" max-width="48"> </v-img>
+              <v-img :src="require('@/assets/logo/logo.png')" max-height="48" max-width="48"> </v-img>
               <div class="d-flex flex-column">
                 <div style="font-size: 20px; font-weight: 700;">{{ vm.userTier.name }}</div>
                 <div style="font-size: 14px; font-weight: 500;">{{ vm.userTier.allocationType }}</div>

@@ -92,7 +92,7 @@
 
       <v-divider></v-divider>
       <div class="cursor-pointer d-flex justify-center blue--text" @click="getLP">
-        Get MOMO-ETH LP<v-icon size="16" class="ml-1" color="blue">mdi-open-in-new</v-icon>
+        Get Linkpad-ETH LP<v-icon size="16" class="ml-1" color="blue">mdi-open-in-new</v-icon>
       </div>
     </v-card>
   </v-dialog>

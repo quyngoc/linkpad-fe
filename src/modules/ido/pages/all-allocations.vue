@@ -11,8 +11,8 @@
         class="d-flex flex-column justify-center align-center mt-6"
       >
         <div class="text-head3 mb-3">No allocation in any pool yet!</div>
-        <div class="text-sub light2--text mb-6">Refer to some projects on MOMO</div>
-        <v-btn color="blue" outlined rounded to="/launch-pad">Momo-Launch</v-btn>
+        <div class="text-sub light2--text mb-6">Refer to some projects on LINKPAD</div>
+        <v-btn color="blue" outlined rounded to="/launch-pad">Linkpad-Launch</v-btn>
       </v-sheet>
 
       <v-card v-for="pool in vm.allPools" :key="pool.model.id" class="mt-6 pa-6" rounded="xl" color="dark2">

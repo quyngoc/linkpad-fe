@@ -8,12 +8,12 @@
         <v-list-item to="/staking">
           Staking
         </v-list-item>
-        <v-list-item to="/farming">
+        <!-- <v-list-item to="/farming">
           Farming
-        </v-list-item>
-        <v-list-item to="/allAllocations">
+        </v-list-item> -->
+        <!-- <v-list-item to="/allAllocations">
           Your allocation
-        </v-list-item>
+        </v-list-item> -->
         <v-list-item>
           <v-btn v-if="!wallet.connected" rounded depressed class="gradient-btn" @click="providers.wallet.connect()">
             Connect Wallet
@@ -30,14 +30,14 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app flat color="#0D0C24">
+    <v-app-bar app flat color="#170f32">
       <v-container>
         <div class="d-flex align-center">
           <router-link :to="`/launch-pad`">
             <v-img
-              alt="Momo Logo"
+              alt="Linkpad Logo"
               contain
-              :src="require('@/assets/logo/momo-logo.png')"
+              :src="require('@/assets/logo/logo.png')"
               transition="scale-transition"
               class="mr-16"
               max-height="44"
@@ -47,12 +47,12 @@
           <div class="d-none d-md-flex align-center full-width gap-16">
             <router-link to="/launch-pad" active-class="font-weight-bold blue--text">Launch pad</router-link>
             <router-link to="/staking" active-class="font-weight-bold blue--text">Staking</router-link>
-            <router-link to="/farming" active-class="font-weight-bold blue--text">Farming</router-link>
+            <!-- <router-link to="/farming" active-class="font-weight-bold blue--text">Farming</router-link> -->
             <v-spacer></v-spacer>
             <div>
-              <v-btn color="transparent" depressed rounded to="/allAllocations">
+              <!-- <v-btn color="transparent" depressed rounded to="/allAllocations">
                 Your allocation
-              </v-btn>
+              </v-btn> -->
               <v-btn
                 v-if="!wallet.connected"
                 rounded
@@ -79,31 +79,31 @@
         </div>
       </v-container>
     </v-app-bar>
-    <v-main style="background-color: #090a1a">
+    <v-main style="background-color: #170f32">
       <router-view></router-view>
     </v-main>
     <v-footer class="transparent d-flex flex-column gap-10 py-12">
-      <v-img :src="require('@/assets/logo/momo-logo-2.png')" height="88" width="88"></v-img>
+      <v-img :src="require('@/assets/logo/logo-2.png')" height="88" width="88"></v-img>
 
       <div class="d-flex align-center justify-center gap-5">
         <v-img
           class="cursor-pointer"
           :src="require('@/assets/icons/telegram.svg')"
-          @click="openPageInANewBlank('https://t.me/momoerc_Ann')"
+          @click="openPageInANewBlank('https://t.me/linkpad_chat')"
         ></v-img>
         <v-img
           class="cursor-pointer"
           :src="require('@/assets/icons/telegram-2.svg')"
-          @click="openPageInANewBlank('https://t.me/MOMOwhales_lounge')"
+          @click="openPageInANewBlank('https://t.me/linkpad_news')"
         ></v-img>
         <v-img
           class="cursor-pointer"
           :src="require('@/assets/icons/twitter.svg')"
-          @click="openPageInANewBlank('https://twitter.com/momoerc')"
+          @click="openPageInANewBlank('https://twitter.com/linkpad_ofc')"
         ></v-img>
       </div>
 
-      <div class="d-flex justify-center gap-5">
+      <!-- <div class="d-flex justify-center gap-5">
         <span class="text-body-bold cursor-pointer" @click="openPageInANewBlank('https://momo-erc.gitbook.io/docs')"
           >WHITEPAPER</span
         >
@@ -117,10 +117,10 @@
         >
       </div>
 
-      <div class="text-body-bold">support@momo-erc.com</div>
+      <div class="text-body-bold">support@momo-erc.com</div> -->
 
       <div style="font-size: 14px;" class="light2--text">
-        ©2023 MOMO V2, All Rights Reserved By <span class="white--text">MOMO V2</span>
+        ©2023 LINKPAD, All Rights Reserved By <span class="white--text">LINKPAD</span>
       </div>
     </v-footer>
     <snack-bar />
@@ -185,10 +185,45 @@ a {
   color: white !important;
 }
 .bg-color {
-  background: linear-gradient(0deg, #090a1a 69.33%, #16182d 106.63%) !important;
+  background: linear-gradient(0deg, #170f32 69.33%, #16182d 106.63%) !important;
 }
 .gradient-btn {
-  background: linear-gradient(94deg, #0146ff 1.82%, #4917a3 81.63%) !important;
+  border-radius: 100px;
+  overflow: hidden;
+  position: relative;
+  transition: all 200ms ease;
+  // background: linear-gradient(135deg, #fa26ca 0%, #712af9 100%) !important;
+}
+.gradient-btn span {
+  position: relative;
+  z-index: 3;
+}
+.gradient-btn::after {
+  background: linear-gradient(135deg, #fa26ca 0%, #712af9 100%) !important;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all 200ms ease;
+}
+.gradient-btn::before {
+  content: '';
+  position: absolute;
+  top: 0 !important;
+  left: 50% !important;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90.99deg, #fdce39 0.27%, #fd8963 30%, #ed5174 98.69%) !important;
+  z-index: 2;
+  transition: all 200ms ease !important;
+}
+.gradient-btn:hover::before {
+  width: 100% !important;
+  left: 0 !important;
+  transition: all 200ms ease !important;
 }
 .position-relative {
   position: relative !important;

@@ -29,7 +29,7 @@
               'text-h2 font-weight-black': $vuetify.breakpoint.smAndUp,
               'text-h5 font-weight-bold': $vuetify.breakpoint.xs
             }"
-            >MOMO<br
+            >Linkpad<br
           /></span>
           <div class="my-4 font-weight-medium">
             B-NFT represents an NFT marketplace for high-quality projects to offer potential NFTs to end-users at a

@@ -6,7 +6,7 @@
           <div>Do you want to havest the full reward?</div>
           <div>
             <span>Amount: </span
-            ><span class="orange--text font-weight-600"> {{ vm.pendingReward | formatNumber(6) }} MOMO</span>
+            ><span class="orange--text font-weight-600"> {{ vm.pendingReward | formatNumber(6) }} LINKPAD</span>
           </div>
         </div>
 

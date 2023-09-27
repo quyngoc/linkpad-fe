@@ -4,7 +4,7 @@
       <v-card color="dark2" rounded="lg" class="pa-5" style="box-shadow: 0px 0px 13px 0px #02E2E3;">
         <div class="d-flex align-center gap-4 mb-10">
           <v-img :src="require(`@/assets/icons/farm-logo.svg`)" max-width="100px"></v-img>
-          <div class="text-head3">ETH / MOMO</div>
+          <div class="text-head3">ETH / LINKPAD</div>
         </div>
         <div class="mb-4">
           <div class="d-flex align-center mb-2">
@@ -53,7 +53,7 @@
             </v-btn>
           </div>
         </div>
-        <div class="light2--text mb-1" style="font-size: 14px;">MOMO/ETH LP Staked</div>
+        <div class="light2--text mb-1" style="font-size: 14px;">LINKPAD/ETH LP Staked</div>
 
         <v-col cols="12">
           <div class="text-h6">{{ vm.stakedLP | formatNumber }}</div>
@@ -114,7 +114,7 @@
 
         <div class="d-flex justify-space-between detail-info mb-2">
           <div class="cursor-pointer d-flex align-center blue--text" @click="getBSL">
-            Get MOMO<v-icon size="16" class="ml-1" color="blue">mdi-open-in-new</v-icon>
+            Get LINKPAD<v-icon size="16" class="ml-1" color="blue">mdi-open-in-new</v-icon>
           </div>
           <div class="cursor-pointer d d-flex align-center blue--text" @click="viewLPContract">
             View Contract<v-icon size="16" class="ml-1" color="blue">mdi-open-in-new</v-icon>
@@ -122,7 +122,7 @@
         </div>
         <div class="d-flex justify-space-between detail-info">
           <div class="cursor-pointer d-flex align-center blue--text" @click="getLP">
-            Get MOMO - ETH LP<v-icon size="16" class="ml-1" color="blue">mdi-open-in-new</v-icon>
+            Get LINKPAD - ETH LP<v-icon size="16" class="ml-1" color="blue">mdi-open-in-new</v-icon>
           </div>
           <div class="cursor-pointer d d-flex align-center blue--text" @click="seePool">
             See Pair Info<v-icon size="16" class="ml-1" color="blue">mdi-open-in-new</v-icon>

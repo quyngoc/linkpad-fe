@@ -15,7 +15,7 @@
             <span class="font-weight-bold">
               the Solana projects
             </span>
-            , MOMO will distribute directly to investors by this Solana wallet.
+            , LINKPAD will distribute directly to investors by this Solana wallet.
           </div>
           <div>
             - Your Solana wallet can be changed for any project by yourself. Only one wallet can be used per project and

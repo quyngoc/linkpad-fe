@@ -3,11 +3,7 @@
     <div class="background-1 py-16">
       <div class="fill-height text-center d-flex flex-column mx-auto px-4" style="max-width: 960px;">
         <div class="text-head3 text-md-display mb-12 mb-md-16">
-          $MOMO is a memecoin with utilities for continuous growth in Crypto World.
-        </div>
-        <div class="mb-12">
-          Mission of MOMO Team is to keep building utilities and generate revenue for its holders to avoid getting the
-          hype drained.
+          Coming Soon
         </div>
 
         <div v-if="vm.exclusivePools.length">
