@@ -73,7 +73,7 @@
             <div>Total stake</div>
             <div class="font-weight-bold">{{ vm.estimateTotalStake | formatNumber(5) }} LINKPAD</div>
           </div>
-          <v-sheet :color="vm.estimateUserTier.color" rounded="lg" class="pa-6">
+          <v-sheet color="dark3" rounded="lg" class="pa-6">
             <div class="d-flex align-center gap-3 mb-4">
               <v-img
                 :src="require(`@/assets/images/tier${vm.estimateUserTier.index}.png`)"

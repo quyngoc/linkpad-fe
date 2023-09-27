@@ -118,6 +118,9 @@
 
         <v-col cols="12">
           <v-sheet :color="vm.userTier.color" rounded="lg" class="pa-6 mb-6 text-center">
+            <div class="d-flex justify-center font-weight-bold mb-6" style="font-size: 24px;">
+              Your Tier
+            </div>
             <div class="d-flex full-width justify-center gap-6 mb-6">
               <v-img
                 :src="require(`@/assets/images/tier${vm.userTier.index}.png`)"
