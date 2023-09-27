@@ -194,8 +194,15 @@ a {
   transition: all 200ms ease;
   // background: linear-gradient(135deg, #fa26ca 0%, #712af9 100%) !important;
 }
-.gradient-btn span {
-  position: relative;
+.gradient-btn span.v-btn__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 3;
 }
 .gradient-btn::after {
