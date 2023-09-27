@@ -2,11 +2,11 @@
   <v-app class="bg-color">
     <v-navigation-drawer v-model="drawer" app bottom :temporary="false" disable-resize-watcher>
       <v-list nav dense>
-        <v-list-item to="/launch-pad">
+        <!-- <v-list-item to="/launch-pad">
           Launch pad
-        </v-list-item>
+        </v-list-item> -->
         <v-list-item to="/staking">
-          Staking
+          STAKE
         </v-list-item>
         <!-- <v-list-item to="/farming">
           Farming
@@ -45,8 +45,8 @@
             />
           </router-link>
           <div class="d-none d-md-flex align-center full-width gap-16">
-            <router-link to="/launch-pad" active-class="font-weight-bold blue--text">Launch pad</router-link>
-            <router-link to="/staking" active-class="font-weight-bold blue--text">Staking</router-link>
+            <!-- <router-link to="/launch-pad" active-class="font-weight-bold blue--text">Launch pad</router-link> -->
+            <router-link to="/staking" active-class="font-weight-bold blue--text">STAKE</router-link>
             <!-- <router-link to="/farming" active-class="font-weight-bold blue--text">Farming</router-link> -->
             <v-spacer></v-spacer>
             <div>
