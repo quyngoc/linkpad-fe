@@ -103,7 +103,8 @@
           <div class="pa-4">
             <div style="font-size: 14px;" class="mb-4">Lock tokens until {{ vm.estimatedUnstakeTime | datetime }}</div>
             <div style="font-size: 14px;">
-              Tokens are locked they cannot be withdrawn under any circumstances until the timer has expired.
+              Tokens are locked they cannot be withdrawn or harvested under any circumstances until the timer has
+              expired.
             </div>
           </div>
         </v-sheet>
