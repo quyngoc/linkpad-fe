@@ -30,14 +30,14 @@ export default class FeaturedPoolItem extends Vue {
     if (!state) return
     const { ended, started, filled, startDuration, endDuration, startDate, endDate, isTBAStartDate } = state
     if (ended) {
-      this.text = filled ? 'Filled' : 'Ended'
+      this.text = filled ? 'Filled' : 'Closed'
       this.warn = !filled
       this.time = filled
         ? `Published at ${moment(endDate).format('DD/MM/YYYY HH:mm:ss')}`
         : `Ended at ${moment(endDate).format('DD/MM/YYYY HH:mm:ss')}`
       // this.warn = !filled
     } else if (started) {
-      this.text = filled ? 'Filled' : `On sale`
+      this.text = filled ? 'Filled' : `Open`
       this.time = `End at ${moment(endDate).format('DD/MM/YYYY HH:mm:ss')}`
     } else {
       if (isTBAStartDate) {

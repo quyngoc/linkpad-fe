@@ -111,14 +111,13 @@
 
         <v-row class="mt-4">
           <v-col cols="6">
-            <v-btn block depressed rounded outlined @click="vm.cancelStakeDialog()" :disabled="vm.isDialogLoading"
+            <v-btn block depressed outlined @click="vm.cancelStakeDialog()" :disabled="vm.isDialogLoading"
               >Cancel</v-btn
             >
           </v-col>
           <v-col cols="6">
             <v-btn
               block
-              rounded
               depressed
               color="gradient-btn"
               :disabled="vm.isDialogStaking ? !vm.validDialogInputAmount : false"

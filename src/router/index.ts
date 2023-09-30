@@ -6,12 +6,12 @@ import VueRouter, { RouteConfig } from 'vue-router'
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
-  { path: '/', redirect: '/staking' },
-  // {
-  //   path: '/launch-pad',
-  //   name: 'IDOPools',
-  //   component: () => import('../modules/ido/pages/ido-pools.vue')
-  // },
+  { path: '/', redirect: '/projects' },
+  {
+    path: '/projects',
+    name: 'IDOPools',
+    component: () => import('../modules/ido/pages/ido-pools.vue')
+  },
   // {
   //   path: '/farming',
   //   name: 'Farm',
@@ -22,13 +22,13 @@ const routes: Array<RouteConfig> = [
     name: 'Staking',
     component: () => import('../modules/staking/pages/staking.vue')
   },
+  // {
+  //   path: '/invest',
+  //   name: 'BInvest',
+  //   component: () => import('../modules/ido/pages/ido-pools.vue')
+  // },
   {
-    path: '/invest',
-    name: 'BInvest',
-    component: () => import('../modules/ido/pages/ido-pools.vue')
-  },
-  {
-    path: '/pool/:slugName',
+    path: '/project/:slugName',
     name: 'IDOPoolDetail',
     component: () => import('../modules/ido/pages/ido-pool-detail.vue')
   },

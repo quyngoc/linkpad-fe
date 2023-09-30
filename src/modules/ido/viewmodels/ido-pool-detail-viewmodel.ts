@@ -358,6 +358,9 @@ export class IdoPoolDetailViewModel {
   @computed get description() {
     return this.poolStore?.pool?.description || this.poolStore?.pool?.data?.shortDescription
   }
+  @computed get shortDescription() {
+    return this.poolStore?.pool?.data?.shortDescription
+  }
   @computed get tradeToken() {
     return this.poolStore?.tradeToken
   }

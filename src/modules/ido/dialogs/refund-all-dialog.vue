@@ -1,6 +1,6 @@
 <template>
   <v-dialog :value="dialog" max-width="456">
-    <v-card color="dark2" rounded="lg" class="pa-6">
+    <v-card color="dark3" rounded="lg" class="pa-6">
       <div class="d-flex flex-column gap-7">
         <div class="d-flex align-center justify-space-between">
           <div class="text-head4">Refund All</div>

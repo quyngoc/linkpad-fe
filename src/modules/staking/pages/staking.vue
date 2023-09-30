@@ -37,10 +37,10 @@
           </v-sheet>
           <v-sheet color="dark2" rounded="lg" class="pa-4 mb-4">
             <div class="d-flex justify-center gap-16">
-              <div class="cursor-pointer d-flex align-center blue--text" @click="getBSL">
+              <div class="cursor-pointer d-flex align-center primary--text" @click="getBSL">
                 Get Linkpad
               </div>
-              <div class="cursor-pointer d d-flex align-center blue--text" @click="viewLPContract">
+              <div class="cursor-pointer d d-flex align-center primary--text" @click="viewLPContract">
                 View Contract
               </div>
             </div>
@@ -75,7 +75,6 @@
                 <v-btn
                   v-if="isChainIdValid"
                   depressed
-                  rounded
                   color="gradient-btn"
                   :disabled="!vm.canHavest"
                   @click="vm.setShowHavestDialog(true)"
@@ -87,19 +86,19 @@
 
             <connect-metamask block :requiredChainId="chainID" :class="{ 'mt-4 mb-3': !vm.isStaked }">
               <div v-if="!vm.approved">
-                <v-btn depressed rounded block color="gradient-btn" :loading="vm.approving" @click="vm.approve()">
+                <v-btn depressed block color="gradient-btn" :loading="vm.approving" @click="vm.approve()">
                   Approve Contract
                 </v-btn>
               </div>
               <div v-else>
                 <v-row no-gutters>
                   <v-col cols="6" class="pr-2">
-                    <v-btn depressed rounded block color="gradient-btn" @click="requestStake">
+                    <v-btn depressed block color="gradient-btn" @click="requestStake">
                       Stake
                     </v-btn>
                   </v-col>
                   <v-col cols="6" class="pl-2">
-                    <v-btn :disabled="!vm.canUnstake" outlined rounded block @click="requestUnstake">Unstake</v-btn>
+                    <v-btn :disabled="!vm.canUnstake" outlined block @click="requestUnstake">Unstake</v-btn>
                   </v-col>
                 </v-row>
               </div>

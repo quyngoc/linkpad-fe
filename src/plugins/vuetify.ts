@@ -38,6 +38,7 @@ export default new Vuetify({
         cardHoverBg: '#ffffff'
       },
       dark: {
+        primary: '#fa26ca',
         dark2: '#16182D',
         dark3: '#2a2342',
         light2: '#9CA0D2',

@@ -15,7 +15,6 @@
             <v-btn
               class="border-radius-8 text-none btn-text px-4 py-5"
               block
-              rounded
               outlined
               :disabled="vm.havesting"
               @click="vm.setShowHavestDialog(false)"
@@ -25,7 +24,6 @@
           </v-col>
           <v-col>
             <v-btn
-              rounded
               :loading="vm.havesting"
               @click="vm.havest()"
               class="border-radius-8 text-none btn-text px-4 py-5"

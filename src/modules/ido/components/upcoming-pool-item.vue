@@ -1,63 +1,99 @@
 <template>
-  <router-link :to="`/pool/${model.pool.slugName}`">
-    <card-hover style="overflow: hidden">
-      <v-img :src="coverImage" height="248" content-class="position-relative">
-        <div class="pt-6 pr-6 d-flex align-center justify-end gap-2">
-          <pool-state :state="model.poolState" />
-          <div>🔥</div>
-        </div>
-        <div style="bottom: -40px; left: 20px;" class="position-absolute">
-          <app-logo :avatar="model.pool.logoUrl || model.pool.file" :height="48" contain />
-        </div>
-      </v-img>
-
-      <div class="pa-6 pt-14 d-flex flex-column gap-5">
-        <div>
-          <div class="text-head2 line-clamp-1">{{ model.pool.name }}</div>
-          <div class="text-head4 line-clamp-1">{{ model.pool.tokenName }}</div>
-          <div class="text-cap light2--text line-clamp-3 mt-2" style="height: 42px">
-            {{ model.shortDescription }}
+  <!-- <router-link :to="`/project/${model.pool.slugName}`"> -->
+  <v-card class="d-flex flex-column full-height bg-color" rounded="lg" outlined>
+    <div class="d-flex full-width pa-4 align-center">
+      <app-logo :avatar="model.pool.logoUrl || model.pool.file" :height="48" contain />
+      <div class="ml-3">
+        <div class="py-0">{{ model.pool.name }}</div>
+        <div v-if="isSocial" class="py-0">
+          <div class="d-flex">
+            <a v-if="model.medium" target="_blank" :href="model.medium">
+              <v-img class="mr-3" height="20px" width="20px" src="../../../assets/medium.svg" contain></v-img>
+            </a>
+            <a v-if="model.telegram" target="_blank" :href="model.telegram">
+              <v-img class="mr-3" height="20px" width="20px" src="../../../assets/telegram.svg" contain></v-img>
+            </a>
+            <a v-if="model.telegramChat" target="_blank" :href="model.telegramChat">
+              <v-img class="mr-3" height="20px" width="20px" src="../../../assets/telegram.svg" contain></v-img>
+            </a>
+            <a v-if="model.twitter" target="_blank" :href="model.twitter">
+              <v-img class="mr-3" height="20px" width="20px" src="../../../assets/twitter.svg" contain></v-img>
+            </a>
+            <a v-if="model.web" target="_blank" :href="model.web">
+              <v-img class="mr-3" height="20px" width="20px" src="../../../assets/web.svg" contain></v-img>
+            </a>
           </div>
-        </div>
-        <div>
-          <v-row>
-            <v-col cols="4">
-              <div class="text-cap light2--text mb-1">Min Allocation</div>
-              <div class="text-head4">{{ model.minAllocationUsd | round | usd }}</div>
-            </v-col>
-            <v-col cols="4">
-              <div class="text-cap light2--text mb-1">Max. Allocation</div>
-              <div class="text-head4">{{ model.maxAllocationUsd | round | usd }}</div>
-            </v-col>
-            <v-col cols="4">
-              <div class="text-cap light2--text mb-1">Access</div>
-              <div class="text-head4">{{ model.pool.accessType }}</div>
-            </v-col>
-          </v-row>
-        </div>
-
-        <v-sheet style="height: 1px" color="#202020"></v-sheet>
-
-        <div class="d-flex justify-space-between align-center">
-          <div>
-            <div class="text-cap light2--text mb-1">Total Raised</div>
-            <div class="text-head2 blue--text">
-              {{ !model.totalRaiseUsd ? 'TBD' : model.totalRaiseUsd | round | usd }}
-            </div>
-          </div>
-          <!-- <v-btn
-            depressed
-            rounded
-            class="gradient-btn"
-            :disabled="!model.whitelistUrl"
-            :href="model.whitelistUrl"
-            target="_blank"
-            >Join Whitelist</v-btn
-          > -->
         </div>
       </div>
-    </card-hover>
-  </router-link>
+    </div>
+    <v-divider class="mb-0"></v-divider>
+
+    <router-link :to="`/project/${model.pool.slugName}`">
+      <card-hover>
+        <div class="d-flex full-width align-center">
+          <v-card-title class="pt-0 pb-2 primary--text">{{ model.pool.tokenName }}</v-card-title>
+          <v-spacer></v-spacer>
+          <div class="mx-4 d-flex align-center mb-2">
+            <pool-state :state="model.poolState" />
+          </div>
+        </div>
+        <v-card-title v-if="model.shortDescription" class="pt-0 caption flex-grow-1 description">
+          <div
+            v-line-clamp="{
+              text: model.shortDescription,
+              lines: 3
+            }"
+          ></div>
+        </v-card-title>
+        <v-card-text>
+          <div class="d-flex justify-space-between">
+            <div>
+              <div class="caption">Total raise</div>
+              <div class="text-h6">
+                {{ !model.totalRaiseUsd ? 'TBD' : model.totalRaiseUsd | round | usd }}
+              </div>
+            </div>
+            <div>
+              <div class="caption">Price</div>
+              <div class="text-h6">${{ model.ratioFn | round }}</div>
+            </div>
+            <div>
+              <div class="caption">Access</div>
+              <div class="text-h6">{{ model.pool.accessType }}</div>
+            </div>
+          </div>
+          <div>
+            <div class="d-flex align-center pt-4">
+              <div class="caption">Progress</div>
+            </div>
+            <div>
+              <v-progress-linear height="12" rounded />
+            </div>
+            <div class="d-flex justify-space-between caption">
+              <div class="caption">0 %</div>
+              <div class="caption">0 / 0</div>
+            </div>
+          </div>
+        </v-card-text>
+      </card-hover>
+    </router-link>
+    <!-- <v-divider class="mx-4"></v-divider> -->
+    <!-- <v-card-text>
+        <div class="d-flex justify-space-between align-center">
+          <div class="d-flex flex-column">
+            <span class="text-subtitle-1">Total Raise</span>
+            <span class="text-h6 primary--text">{{
+              !model.totalRaiseUsd ? 'TBD' : model.totalRaiseUsd | round | usd
+            }}</span>
+          </div>
+          <v-spacer />
+          <v-btn :disabled="!model.whitelistUrl" color="primary" rounded :href="model.whitelistUrl" target="_blank"
+            >Join Whitelist</v-btn
+          >
+        </div>
+      </v-card-text> -->
+  </v-card>
+  <!-- </router-link> -->
 </template>
 
 <script lang="ts">
@@ -84,6 +120,22 @@ export default class FeaturedPoolItem extends Vue {
     }
   }
 
+  isSocial() {
+    return (
+      this.model.medium ||
+      this.model.telegram ||
+      this.model.web ||
+      this.model.facebook ||
+      this.model.instagram ||
+      this.model.discord ||
+      this.model.reddit ||
+      this.model.telegramChat ||
+      this.model.twitter ||
+      this.model.github ||
+      this.model.youtube
+    )
+  }
+
   get coverImage() {
     return this.model.pool.coverImageUrl ? this.model.pool.coverImageUrl : require('@/assets/images/cover-default.jpg')
   }
@@ -93,5 +145,12 @@ export default class FeaturedPoolItem extends Vue {
 <style scoped lang="scss">
 ::v-deep .v-responsive {
   overflow: initial;
+}
+.bg-color {
+  background-color: #2a2342;
+}
+.description {
+  min-height: 90px;
+  word-break: normal;
 }
 </style>
