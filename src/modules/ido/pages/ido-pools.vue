@@ -29,7 +29,12 @@
       </div>
     </div>
 
-    <v-container class="py-16">
+    <v-container v-if="!vm.filteredPools || !vm.filteredPools.length" class="py-16">
+      <div class="text-head3 font-weight-bold text-center">
+        No projects currently
+      </div>
+    </v-container>
+    <v-container v-else class="py-16">
       <v-row>
         <v-col v-if="vm.hasFeaturedPools" cols="12" class="text-head3 font-weight-bold text-center"
           >PROJECTS OPEN NOW</v-col
