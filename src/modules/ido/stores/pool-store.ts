@@ -350,6 +350,9 @@ export class PoolStore {
   @computed get allowRefundUsd() {
     return this.vestingContract?.allowRefundUsd
   }
+  @computed get isTBAPrice() {
+    return this.pool?.ratio ? this.pool?.ratio <= 0 : true
+  }
   destroy() {
     this._diposers.forEach(d => d())
     this._unsubcrible.next()

@@ -4,7 +4,7 @@
     <div class="d-flex full-width pa-4 align-center">
       <app-logo :avatar="model.pool.logoUrl || model.pool.file" :height="48" contain />
       <div class="ml-3">
-        <div class="py-0">{{ model.pool.name }}</div>
+        <div class="py-0 text-h6">{{ model.pool.name }}</div>
         <div v-if="isSocial" class="py-0">
           <div class="d-flex">
             <a v-if="model.medium" target="_blank" :href="model.medium">
@@ -55,7 +55,8 @@
             </div>
             <div>
               <div class="caption">Price</div>
-              <div class="text-h6">${{ model.ratioFn | round }}</div>
+              <div class="text-h6" v-if="model.isTBAPrice">TBA</div>
+              <div class="text-h6" v-else>${{ model.ratioFn | round }}</div>
             </div>
             <div>
               <div class="caption">Access</div>

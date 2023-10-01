@@ -120,7 +120,8 @@
               </v-col>
               <v-col cols="12" md="4">
                 <div class="mb-2 light2--text text-body">Price</div>
-                <div class="text-head3">${{ vm | _get('ratioFn', 'TBA') }}</div>
+                <div class="text-h6" v-if="vm.isTBAPrice">TBA</div>
+                <div class="text-head3" v-else>${{ vm | _get('ratioFn', 'TBA') }}</div>
               </v-col>
             </v-row>
           </v-sheet>
@@ -141,12 +142,12 @@
     <!-- details -->
 
     <v-card class="mt-6" color="transparent">
-      <v-tabs v-model="tab" background-color="transparent">
-        <v-tab :value="1">Project Details</v-tab>
+      <v-tabs v-model="vm.tab" @change="changeTab" background-color="transparent" show-arrows>
+        <v-tab :value="1">Details</v-tab>
         <v-tab :value="2">Description</v-tab>
         <v-tab :value="3">Your Allocations</v-tab>
       </v-tabs>
-      <v-window v-model="tab">
+      <v-window v-model="vm.tab">
         <v-window-item class="py-4">
           <v-row>
             <v-col cols="12" md="6">
@@ -180,7 +181,7 @@
                   </div>
                 </div> -->
                 <div class="d-flex justify-space-between align-center ma-4">
-                  <div class="text-body light2--text">Max. Allocation</div>
+                  <div class="text-body light2--text">Max Allocation</div>
                   <div class="text-body-bold text-end" v-if="!vm.maxAllocation">TBA</div>
                   <div class="text-body-bold text-end" v-else>
                     {{ vm.maxAllocation | round | formatNumber(2) }} {{ vm.tokenName }}
@@ -199,7 +200,8 @@
                 </div>
                 <div class="d-flex justify-space-between align-center ma-4">
                   <div class="text-body light2--text">Token for sale</div>
-                  <div class="text-body-bold text-end">{{ vm.totaltokens | formatNumber(2) }}</div>
+                  <div class="text-body-bold text-end" v-if="!vm.isShowTotalTokens">TBA</div>
+                  <div class="text-body-bold text-end" v-else>{{ vm.totaltokens | formatNumber(2) }}</div>
                 </div>
                 <div class="d-flex justify-space-between align-center ma-4">
                   <div class="text-body light2--text">Address</div>
@@ -226,13 +228,12 @@
         <v-window-item class="pa-6">
           {{ vm.description }}
         </v-window-item>
-
         <v-window-item>
           <div class="pa-4">
             <div class="d-flex gap-3 align-center">
               <div class="text-h5 font-weight-bold">Your Allocations</div>
               <connect-metamask small v-if="!walletStore.connected" />
-              <div v-else>
+              <div class="d-flex gap-3 align-center full-width" v-else>
                 <PoolCountdown
                   v-if="vm.showRefundCountdown"
                   :time="vm.refundEndTime"
@@ -243,13 +244,13 @@
                   <connect-metamask small :requiredChainId="vm.chainId">
                     <v-btn
                       v-if="vm.isShowRefundButton"
-                      color="blue"
+                      color="primary"
                       depressed
                       :loading="vm.refunding"
                       :disabled="!vm.canRefund"
                       @click="refund()"
                       outlined
-                      >Refund All</v-btn
+                      >Refund</v-btn
                     >
                   </connect-metamask>
                 </div>
@@ -283,17 +284,17 @@
                     <span class="mr-2">Please refund</span>
                   </div>
                   <v-btn depressed color="gradient-btn" :disabled="true" small v-else-if="!item.canRedeemTokens">
-                    Claim Tokens
+                    Claim
                   </v-btn>
                   <connect-metamask v-else small :requiredChainId="vm.chainId">
                     <v-btn
                       :loading="item.loading || vm.claiming"
-                      color="gradient-btn"
+                      class="gradient-btn"
                       :disabled="!item.canRedeemTokens || vm.refunding"
-                      small
+                      outlined
                       @click="item.claimToken()"
-                      >Claim Tokens</v-btn
-                    >
+                      >Claim
+                    </v-btn>
                   </connect-metamask>
                 </div>
               </template>
@@ -337,7 +338,6 @@ export default class IdoPoolDetail extends Vue {
   @Provide() vm = new IdoPoolDetailViewModel()
   @Ref('refund-all-dialog') refundAllDialog: any
 
-  tab = null
   headers = [
     { text: '#', value: 'index', sortable: false },
     { text: 'Token Allocation', value: 'purchase.amount', sortable: false },
@@ -349,7 +349,7 @@ export default class IdoPoolDetail extends Vue {
     { text: '#', value: 'index', sortable: false },
     { text: 'Token Allocation', value: 'purchase.amount', sortable: false },
     { text: 'Trade Amount', value: 'purchase.ethAmount', sortable: false },
-    { text: 'Valid From', value: 'purchase.validAfterDate', sortable: false },
+    { text: 'Time', value: 'purchase.validAfterDate', sortable: false },
     { text: 'Action', value: 'action', sortable: false }
   ]
   walletStore = walletStore
@@ -382,6 +382,10 @@ export default class IdoPoolDetail extends Vue {
 
   viewOnBsc() {
     window.open(`https://bscscan.com/address/${this.vm.pool?.address}`, '_blank')
+  }
+
+  changeTab(tab) {
+    this.vm.changeTab(tab)
   }
 
   destroyed() {
