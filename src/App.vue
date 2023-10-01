@@ -2,6 +2,9 @@
   <v-app class="bg-color">
     <v-navigation-drawer v-model="drawer" app bottom :temporary="false" disable-resize-watcher>
       <v-list nav dense>
+        <v-list-item @click="openPageInANewBlank('https://www.link-pad.io/')">
+          Linkpad Home
+        </v-list-item>
         <v-list-item to="/projects">
           Projects
         </v-list-item>
@@ -18,13 +21,7 @@
           <v-btn v-if="!wallet.connected" depressed class="gradient-btn" @click="providers.wallet.connect()">
             Connect Wallet
           </v-btn>
-          <v-btn v-else depressed color="#1E203D">
-            <v-img
-              :src="require('@/assets/icons/metamask-icon.svg')"
-              max-height="16"
-              max-width="16"
-              class="mr-2"
-            ></v-img>
+          <v-btn v-else depressed color="primary">
             {{ wallet.shortAccount }}
           </v-btn>
         </v-list-item>
@@ -45,6 +42,9 @@
             />
           </router-link>
           <div class="d-none d-md-flex align-center full-width gap-16">
+            <div @click="openPageInANewBlank('https://www.link-pad.io/')" style="cursor: pointer;">
+              Linkpad Home
+            </div>
             <router-link to="/projects" active-class="font-weight-bold primary--text">Projects</router-link>
             <router-link to="/staking" active-class="font-weight-bold primary--text">Stake</router-link>
             <!-- <router-link to="/farming" active-class="font-weight-bold blue--text">Farming</router-link> -->
@@ -292,6 +292,6 @@ tbody {
   cursor: pointer;
 }
 .cursor-pointer:hover {
-  color: aqua;
+  color: #fa26ca;
 }
 </style>
