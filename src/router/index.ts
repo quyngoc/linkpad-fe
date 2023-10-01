@@ -31,32 +31,32 @@ const routes: Array<RouteConfig> = [
     path: '/project/:slugName',
     name: 'IDOPoolDetail',
     component: () => import('../modules/ido/pages/ido-pool-detail.vue')
-  },
-  {
-    path: '/allPools',
-    name: 'AllPools',
-    component: () => import('../modules/ido/pages/all-pools.vue')
-  },
-  {
-    path: '/allAllocations',
-    name: 'AllAllocations',
-    component: () => import('../modules/ido/pages/all-allocations.vue')
-  },
-  {
-    path: '/b-nft',
-    name: 'NFTPools',
-    component: () => import('../modules/nft/pages/pools.vue')
-  },
-  {
-    path: '/b-nft/:name',
-    name: 'NFTPoolDetail',
-    component: () => import('../modules/nft/pages/pool-detail.vue')
-  },
-  {
-    path: '/settingSolana',
-    name: 'SettingSolanaWallet',
-    component: () => import('../modules/ido/pages/setting-solana-wallet.vue')
   }
+  // {
+  //   path: '/allPools',
+  //   name: 'AllPools',
+  //   component: () => import('../modules/ido/pages/all-pools.vue')
+  // },
+  // {
+  //   path: '/allAllocations',
+  //   name: 'AllAllocations',
+  //   component: () => import('../modules/ido/pages/all-allocations.vue')
+  // },
+  // {
+  //   path: '/b-nft',
+  //   name: 'NFTPools',
+  //   component: () => import('../modules/nft/pages/pools.vue')
+  // },
+  // {
+  //   path: '/b-nft/:name',
+  //   name: 'NFTPoolDetail',
+  //   component: () => import('../modules/nft/pages/pool-detail.vue')
+  // },
+  // {
+  //   path: '/settingSolana',
+  //   name: 'SettingSolanaWallet',
+  //   component: () => import('../modules/ido/pages/setting-solana-wallet.vue')
+  // }
 ]
 
 const router = new VueRouter({
