@@ -95,7 +95,7 @@ export default class AllPools extends Vue {
   ]
 
   showDetail(item) {
-    this.$router.push({ path: '/pool/' + item.pool.slugName })
+    this.$router.push({ path: '/project/' + item.pool.slugName })
   }
 
   destroyed() {

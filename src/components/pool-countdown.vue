@@ -59,9 +59,9 @@ export default class PoolCountdown extends Vue {
 
 <style scoped>
 .countDown {
-  border-radius: 24px;
-  border: 1px solid #70feff;
-  color: #70feff;
+  border-radius: 6px;
+  border: 1px solid #fa26ca;
+  color: #fa26ca;
   width: fit-content;
   padding: 8px 16px 8px 16px;
 }

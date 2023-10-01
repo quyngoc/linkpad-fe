@@ -12,7 +12,7 @@
       >
         <div class="text-head3 mb-3">No allocation in any pool yet!</div>
         <div class="text-sub light2--text mb-6">Refer to some projects on LINKPAD</div>
-        <v-btn color="blue" outlined rounded to="/launch-pad">Linkpad-Launch</v-btn>
+        <v-btn color="blue" outlined rounded to="/projects">Linkpad-projects</v-btn>
       </v-sheet>
 
       <v-card v-for="pool in vm.allPools" :key="pool.model.id" class="mt-6 pa-6" rounded="xl" color="dark2">
@@ -92,41 +92,6 @@
             </template>
           </v-data-table>
         </v-card>
-        <!-- 
-              <div v-else-if="item.claimed" class="d-flex align-center">
-                <span class="mr-2">Claimed</span>
-              </div>
-              <div v-else-if="item.refunded" class="d-flex align-center">
-                <span class="mr-2">Refunded</span>
-              </div>
-              <div v-else-if="pool.forceRefund">
-                <router-link class="blue--text" :to="`/pool/${pool.slugName}`">
-                  Go to project detail and refund
-                </router-link>
-              </div>
-              <v-btn color="primary" :disabled="true" small v-else-if="!item.canRedeemTokens">Claim Tokens</v-btn>
-              <connect-metamask small v-else :requiredChainId="pool.chainId">
-                <v-btn
-                  :loading="item.claiming"
-                  color="primary"
-                  :disabled="!item.canRedeemTokens || pool.isTBARedeem"
-                  small
-                  @click="item.claimToken()"
-                  >Claim Tokens</v-btn
-                >
-              </connect-metamask>
-            </div>
-          </template>
-          <template v-slot:item.purchase.validAfterDate="{ item }">
-            <span v-if="item.purchase.validAfterDate && !pool.isTBARedeem">
-              {{ item.purchase.validAfterDate | ddmmyyyyhhmmss }}
-            </span>
-            <span v-else>TBA</span>
-          </template>
-          <template v-slot:item.purchase.ethAmount="{ item }">
-            {{ item.purchase.ethAmount | formatNumber }} {{ pool.tradeToken }}
-          </template>
-        </v-data-table> -->
       </v-card>
       <div class="d-flex mt-6 justify-center">
         <v-btn v-if="!walletStore.connected" depressed rounded color="gradient-btn" @click="walletStore.connect()">
@@ -206,7 +171,7 @@ export default class AllPools extends Vue {
 
   showDetail(item) {
     if (item.pool.address) {
-      this.$router.push({ path: '/pool/' + item.pool.id })
+      this.$router.push({ path: '/project/' + item.pool.id })
     }
   }
 

@@ -4,7 +4,6 @@
     depressed
     :large="large"
     color="gradient-btn"
-    rounded
     :block="block"
     @click="walletStore.connect()"
   >
@@ -14,7 +13,6 @@
     depressed
     :large="large"
     color="gradient-btn"
-    rounded
     :block="block"
     :small="small"
     v-else-if="walletStore.chainId !== +requiredChainId"

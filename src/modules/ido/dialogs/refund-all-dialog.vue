@@ -1,6 +1,6 @@
 <template>
   <v-dialog :value="dialog" max-width="456">
-    <v-card color="dark2" rounded="lg" class="pa-6">
+    <v-card color="dark3" rounded="lg" class="pa-6">
       <div class="d-flex flex-column gap-7">
         <div class="d-flex align-center justify-space-between">
           <div class="text-head4">Refund All</div>
@@ -16,10 +16,7 @@
           This is actions to register Refund USD. We will airdop to all users after the refund timing is ended.
         </div>
 
-        <div
-          style="border-radius: 10px;border: 1px solid var(--g1, #0146FF);"
-          class="pa-5 d-flex justify-space-between"
-        >
+        <div class="pa-5 d-flex justify-space-between card-border">
           <div class="light2--text" style="font-size: 14px;">
             Total refund available
           </div>
@@ -72,4 +69,9 @@ export default class extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.card-border {
+  border-radius: 8px;
+  border: 1px solid var(--v-primary-base);
+}
+</style>

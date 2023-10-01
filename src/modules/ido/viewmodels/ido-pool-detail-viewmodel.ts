@@ -1,12 +1,12 @@
 import { snackController } from '@/components/snack-bar/snack-bar-controller'
 import { getBscScanLink } from '@/helpers'
-import { mappingWalletHandler } from '@/helpers/mapping-wallet-handler'
+// import { mappingWalletHandler } from '@/helpers/mapping-wallet-handler'
 import ERC20TokenContract from '@/libs/models/ERC20TokenContract'
 import FixedSwapContract, { FixedSwapContractPurchase } from '@/libs/models/FixedSwapContract'
 import { walletStore } from '@/stores/wallet-store'
 import { FixedNumber } from '@ethersproject/bignumber'
 import { get } from 'lodash-es'
-import { computed, IReactionDisposer, observable, reaction } from 'mobx'
+import { action, computed, IReactionDisposer, observable, reaction } from 'mobx'
 import { asyncAction } from 'mobx-utils'
 import moment from 'moment'
 import { formatDuration } from '../business/swap-contract.business'
@@ -67,6 +67,7 @@ export class IdoPoolDetailViewModel {
   @observable claiming = false
   @observable refunding = false
   @observable purchasedToken = Zero
+  @observable tab = 0
 
   private _tradeTokenContract?: ERC20TokenContract
 
@@ -168,6 +169,8 @@ export class IdoPoolDetailViewModel {
         }
         return new PurchasedItemViewModel(p, contract!, this)
       })
+
+    if (this.purchases.length > 0) this.tab = 2
   }
 
   @asyncAction *approve() {
@@ -264,6 +267,10 @@ export class IdoPoolDetailViewModel {
     }
   }
 
+  @action.bound changeTab(tab = 0) {
+    this.tab = tab
+  }
+
   @computed get addressBscUrl() {
     if (!this.contractAddress) return ''
     return getBscScanLink(this.chainId || 56, this.contractAddress, 'address')
@@ -357,6 +364,9 @@ export class IdoPoolDetailViewModel {
   }
   @computed get description() {
     return this.poolStore?.pool?.description || this.poolStore?.pool?.data?.shortDescription
+  }
+  @computed get shortDescription() {
+    return this.poolStore?.pool?.data?.shortDescription
   }
   @computed get tradeToken() {
     return this.poolStore?.tradeToken
@@ -524,5 +534,8 @@ export class IdoPoolDetailViewModel {
   }
   @computed get allowRefundUsd() {
     return !!this.poolStore?.allowRefundUsd
+  }
+  @computed get isTBAPrice() {
+    return this.poolStore?.isTBAPrice
   }
 }

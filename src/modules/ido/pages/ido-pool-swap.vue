@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="dialog" :max-width="$vuetify.breakpoint.smAndDown ? '350' : '400'" persistent>
-    <v-card color="dark2" rounded="xl" class="pa-6">
+    <v-card color="dark3" rounded="xl" class="pa-6">
       <div class="d-flex justify-space-between align-center mb-8">
         <div class="d-flex align-center">
           <div class="text-head4">Swap</div>
@@ -35,7 +35,7 @@
         </v-btn>
       </div>
 
-      <div class="pa-4 mb-5" style="border-radius: 10px;border: 1px solid var(--v-blue-base);">
+      <div class="pa-4 mb-5 card-border">
         <div class="d-flex flex-column gap-2">
           <div class="d-flex justify-space-between align-center">
             <div class="text-body light2--text" style="font-size: 14px;">Your tier</div>
@@ -47,13 +47,13 @@
           </div>
           <div class="d-flex justify-space-between align-center">
             <div class="text-body light2--text" style="font-size: 14px;">Price</div>
-            <div class="text-body-bold text-end">1 {{ vm.tokenName }} = {{ vm.ratioFn }} {{ vm.tradeToken }}</div>
+            <div class="text-body-bold text-end">${{ vm.ratioFn }}</div>
           </div>
         </div>
       </div>
 
-      <div class="mb-3">
-        <div class="mb-1 text-body-bold light2--text text-end">
+      <v-sheet rounded="lg" style="background: #FFFFFF1A;" class="pa-4">
+        <div class="mb-1 text-body-bold light2--text">
           Balance: {{ vm.tradeTokenBalance | round }} {{ vm.tradeToken }}
         </div>
         <v-text-field
@@ -69,28 +69,25 @@
         >
           <template v-slot:append>
             <div class="d-flex align-center gap-1">
-              <v-btn depressed color="transparent" class="blue--text text-head4 cursor-pointer" @click="maxBnb">
-                Max
-              </v-btn>
               <trade-token-name :vm="vm" />
             </div>
           </template>
         </v-text-field>
-      </div>
+      </v-sheet>
 
       <v-sheet
         width="36"
         height="36"
         rounded="circle"
-        color="strock"
-        class="d-flex align-center justify-center mx-auto mb-3"
+        color="primary"
+        class="d-flex align-center justify-center mx-auto my-3"
       >
         <v-icon>mdi-arrow-down</v-icon>
       </v-sheet>
 
-      <div>
-        <div class="text-body-bold light2--text text-end mb-1">
-          Remaining: {{ vm.remainToken | formatNumber(2) }} tokens
+      <v-sheet rounded="lg" style="background: #FFFFFF1A;" class="pa-4">
+        <div class="text-body-bold light2--text mb-1">
+          Remaining: {{ vm.remainToken | formatNumber(2) }} {{ vm.tokenName }}
         </div>
         <v-text-field
           solo
@@ -136,7 +133,7 @@
             <div class="text-caption">{{ totalPay }} {{ vm.tradeToken }}</div>
           </div>
         </div>
-      </div>
+      </v-sheet>
 
       <v-btn v-if="!vm.connected" block depressed color="primary mt-6" @click="vm.connectWallet()"
         >Connect Wallet</v-btn
@@ -144,7 +141,6 @@
       <div v-else-if="!vm.approved">
         <v-btn
           block
-          rounded
           depressed
           class="gradient-btn mt-8"
           @click="approve"
@@ -154,154 +150,13 @@
         >
       </div>
       <div v-else>
-        <v-btn depressed rounded block @click="swap" :loading="vm.swaping" class="gradient-btn mt-8">
-          Swap
+        <v-btn depressed block @click="swap" :loading="vm.swaping" class="gradient-btn mt-8">
+          Confirm swap
         </v-btn>
       </div>
       <div v-if="error" class="error--text text-caption mt-2">{{ error }}</div>
       <div v-if="vm.forceError" class="error--text text-caption mt-2">{{ vm.forceError }}</div>
     </v-card>
-    <!-- <div class="v-application--wrap">
-      <div class="primary lighten-1 root pb-16">
-        <div class="px-6">
-          <v-card rounded="xl" class="pa-6 mx-auto" max-width="420" elevation="4">
-            <div class="d-flex justify-space-between align-center">
-              <div class="text-h5 font-weight-bold">Swap</div>
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    v-bind="attrs"
-                    v-on="on"
-                    icon
-                    :loading="vm.loadingContrains"
-                    :disabled="vm.loadingContrains"
-                    @click="vm.getContractContrains()"
-                  >
-                    <v-icon>
-                      mdi-refresh
-                    </v-icon>
-                  </v-btn>
-                </template>
-                Fetch new pool data
-              </v-tooltip>
-            </div>
-            <v-sheet class="pa-4 pb-1 my-4" rounded="xl" outlined>
-              <div class="d-flex justify-space-between align-center">
-                <div class="text-subtitle-2">From</div>
-                <div class="text-caption">Balance: {{ vm.tradeTokenBalance | round }} {{ vm.tradeToken }}</div>
-              </div>
-              <v-text-field
-                hide-details
-                flat
-                solo
-                single-line
-                placeholder="0.0"
-                class="input no-padding-text-field"
-                v-model="bnbCost"
-                @input="userChangeBnbCost"
-              >
-                <div slot="append" class="d-flex align-center">
-                  <v-tooltip bottom>
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-btn v-bind="attrs" v-on="on" x-small outlined @click="maxBnb">
-                        Max
-                      </v-btn>
-                    </template>
-                    <div class="d-flex flex-column">
-                      <span>
-                        Your Staked BSL Balance:
-                        <span class="font-weight-bold">{{ vm.requiredTokenBalance | round }}</span>
-                      </span>
-                      <span>
-                        Your Locked LP Balance: <span class="font-weight-bold">{{ vm.lpLockedBalance | round }}</span>
-                      </span>
-                      <v-divider class="my-2" />
-                      <span>
-                        Maximum Tokens: <span class="font-weight-bold">{{ vm.maximumToken | round }}</span>
-                      </span>
-                      <span>
-                        Maximum {{ vm.tradeToken }}:
-                        <span class="font-weight-bold">{{ vm.possibleMaxTradeToken | round }}</span>
-                      </span>
-                      <v-divider class="my-2" />
-                      <span>
-                        Your Allocated Tokens:
-                        <span class="font-weight-bold">{{ vm.purchasedToken | round }}</span>
-                      </span>
-                    </div>
-                  </v-tooltip>
-                  <span class="primary--text ml-3">{{ vm.tradeToken }}</span>
-                </div>
-              </v-text-field>
-            </v-sheet>
-            <div class="d-flex justify-space-around">
-              <v-icon>
-                mdi-arrow-down
-              </v-icon>
-            </div>
-            <v-sheet class="pa-4 pb-1 my-4" rounded="xl" outlined>
-              <div class="d-flex justify-space-between align-center">
-                <div class="text-subtitle-2">To</div>
-                <div class="text-caption">Remaining: {{ vm.remainToken | round }} tokens</div>
-              </div>
-              <v-text-field
-                hide-details
-                flat
-                solo
-                single-line
-                placeholder="0.0"
-                class="input no-padding-text-field"
-                v-model="amountToken"
-                @input="userChangeAmountToken"
-              >
-              </v-text-field>
-            </v-sheet>
-            <v-sheet class="px-1" v-if="vm.tax">
-              <div class="d-flex justify-space-between align-center">
-                <div class="d-flex align-center">
-                  <div class="text-subtitle-2 mr-1">Service fee ({{ vm.tax }}%)</div>
-                  <v-tooltip bottom>
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-icon v-bind="attrs" v-on="on" size="18">
-                        mdi-alert-circle-outline
-                      </v-icon>
-                    </template>
-                    <div>
-                      Buyer will have to pay a service fee of 5% of purchase value
-                    </div>
-                  </v-tooltip>
-                </div>
-                <div class="text-caption">{{ fee }}</div>
-              </div>
-              <div class="d-flex justify-space-between align-center">
-                <div class="text-subtitle-2">Total pay</div>
-                <div class="text-caption">{{ totalPay }}</div>
-              </div>
-            </v-sheet>
-
-            <v-btn v-if="!vm.connected" block depressed color="primary mt-6" @click="vm.connectWallet()"
-              >Connect Wallet</v-btn
-            >
-            <v-row v-else class="d-flex mt-4">
-              <v-col cols="6" v-if="vm.tradeByErc20">
-                <v-btn block depressed color="primary" @click="approve" :loading="vm.approving" :disabled="vm.approved"
-                  >Approve</v-btn
-                >
-              </v-col>
-              <v-col :cols="vm.tradeByErc20 ? '6' : '12'">
-                <v-btn block depressed color="primary" @click="swap" :loading="vm.swaping" :disabled="!vm.enableSwap"
-                  >Swap</v-btn
-                >
-              </v-col>
-            </v-row>
-            <div v-if="error" class="error--text text-caption mt-2">{{ error }}</div>
-            <div v-if="vm.forceError" class="error--text text-caption mt-2">{{ vm.forceError }}</div>
-          </v-card>
-        </div>
-      </div>
-
-      <company-footer />
-    </div> -->
   </v-dialog>
 </template>
 
@@ -437,5 +292,9 @@ export default class IdoPoolDSwap extends Vue {
 }
 .border-gradient-something {
   border-image-source: linear-gradient(94deg, #0146ff 1.82%, #4917a3 81.63%) !important;
+}
+.card-border {
+  border-radius: 8px;
+  border: 1px solid var(--v-primary-base);
 }
 </style>

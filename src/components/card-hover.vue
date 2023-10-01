@@ -1,9 +1,9 @@
 <template>
   <v-hover v-slot="{ hover }">
     <v-sheet
-      rounded="xl"
+      rounded="lg"
       :style="{
-        border: hover ? `1px solid var(--v-blue-base)` : '1px solid transparent',
+        border: hover ? `1px solid var(--v-primary-base)` : '1px solid transparent',
         backgroundColor: 'var(--v-dark2-base)',
         overflow: 'hidden'
       }"

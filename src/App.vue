@@ -2,11 +2,14 @@
   <v-app class="bg-color">
     <v-navigation-drawer v-model="drawer" app bottom :temporary="false" disable-resize-watcher>
       <v-list nav dense>
-        <!-- <v-list-item to="/launch-pad">
-          Launch pad
-        </v-list-item> -->
+        <v-list-item @click="openPageInANewBlank('https://www.link-pad.io/')">
+          Linkpad Home
+        </v-list-item>
+        <v-list-item to="/projects">
+          Projects
+        </v-list-item>
         <v-list-item to="/staking">
-          STAKE
+          Stake
         </v-list-item>
         <!-- <v-list-item to="/farming">
           Farming
@@ -15,16 +18,10 @@
           Your allocation
         </v-list-item> -->
         <v-list-item>
-          <v-btn v-if="!wallet.connected" rounded depressed class="gradient-btn" @click="providers.wallet.connect()">
+          <v-btn v-if="!wallet.connected" depressed class="gradient-btn" @click="providers.wallet.connect()">
             Connect Wallet
           </v-btn>
-          <v-btn rounded v-else depressed color="#1E203D">
-            <v-img
-              :src="require('@/assets/icons/metamask-icon.svg')"
-              max-height="16"
-              max-width="16"
-              class="mr-2"
-            ></v-img>
+          <v-btn v-else depressed color="primary">
             {{ wallet.shortAccount }}
           </v-btn>
         </v-list-item>
@@ -33,7 +30,7 @@
     <v-app-bar app flat color="#170f32">
       <v-container>
         <div class="d-flex align-center">
-          <router-link :to="`/launch-pad`">
+          <router-link :to="`/projects`">
             <v-img
               alt="Linkpad Logo"
               contain
@@ -45,30 +42,21 @@
             />
           </router-link>
           <div class="d-none d-md-flex align-center full-width gap-16">
-            <!-- <router-link to="/launch-pad" active-class="font-weight-bold blue--text">Launch pad</router-link> -->
-            <router-link to="/staking" active-class="font-weight-bold blue--text">STAKE</router-link>
+            <div @click="openPageInANewBlank('https://www.link-pad.io/')" style="cursor: pointer;">
+              Linkpad Home
+            </div>
+            <router-link to="/projects" active-class="font-weight-bold primary--text">Projects</router-link>
+            <router-link to="/staking" active-class="font-weight-bold primary--text">Stake</router-link>
             <!-- <router-link to="/farming" active-class="font-weight-bold blue--text">Farming</router-link> -->
             <v-spacer></v-spacer>
             <div>
               <!-- <v-btn color="transparent" depressed rounded to="/allAllocations">
                 Your allocation
               </v-btn> -->
-              <v-btn
-                v-if="!wallet.connected"
-                rounded
-                depressed
-                class="gradient-btn ml-4"
-                @click="providers.wallet.connect()"
-              >
+              <v-btn v-if="!wallet.connected" depressed class="gradient-btn ml-4" @click="providers.wallet.connect()">
                 Connect Wallet
               </v-btn>
-              <v-btn v-else rounded depressed color="#1E203D" class="ml-4">
-                <v-img
-                  :src="require('@/assets/icons/metamask-icon.svg')"
-                  max-height="16"
-                  max-width="16"
-                  class="mr-2"
-                ></v-img>
+              <v-btn v-else depressed color="#1E203D" class="ml-4 primary--text">
                 {{ wallet.shortAccount }}
               </v-btn>
             </div>
@@ -304,6 +292,6 @@ tbody {
   cursor: pointer;
 }
 .cursor-pointer:hover {
-  color: aqua;
+  color: #fa26ca;
 }
 </style>
