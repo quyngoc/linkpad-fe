@@ -230,8 +230,14 @@
         </v-window-item>
         <v-window-item>
           <div class="pa-4">
-            <div class="d-flex gap-3 align-center">
-              <div class="text-h5 font-weight-bold">Your Allocations</div>
+            <div
+              class="gap-3 full-width"
+              :class="{
+                'd-flex align-center': $vuetify.breakpoint.smAndUp,
+                'd-flex flex-column': $vuetify.breakpoint.xs
+              }"
+            >
+              <div class="text-h5 font-weight-bold">Allocations</div>
               <connect-metamask small v-if="!walletStore.connected" />
               <div class="d-flex gap-3 align-center full-width" v-else>
                 <PoolCountdown
@@ -283,7 +289,7 @@
                   <div v-else-if="vm.forceRefund">
                     <span class="mr-2">Please refund</span>
                   </div>
-                  <v-btn depressed color="gradient-btn" :disabled="true" small v-else-if="!item.canRedeemTokens">
+                  <v-btn depressed color="gradient-btn" :disabled="true" v-else-if="!item.canRedeemTokens">
                     Claim
                   </v-btn>
                   <connect-metamask v-else small :requiredChainId="vm.chainId">
