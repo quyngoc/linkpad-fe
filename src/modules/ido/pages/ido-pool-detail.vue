@@ -222,7 +222,7 @@
           >
         </v-window-item>
         <v-window-item class="pa-6">
-          <div v-html="markdownToHtml()"></div>
+          <VueMarkdown>{{ vm.description }}</VueMarkdown>
         </v-window-item>
         <v-window-item>
           <div class="pa-4">
@@ -326,7 +326,7 @@ import { Component, Vue, Watch, Provide, Ref } from 'vue-property-decorator'
 import { walletStore } from '@/stores/wallet-store'
 import { IdoPoolDetailViewModel } from '../viewmodels/ido-pool-detail-viewmodel'
 import PoolCountdown from '@/components/pool-countdown.vue'
-import { marked } from 'marked'
+import VueMarkdown from 'vue-markdown'
 
 @Observer
 @Component({
@@ -334,7 +334,8 @@ import { marked } from 'marked'
     'pool-state': () => import('../components/pool-state.vue'),
     'ido-pool-swap': () => import('./ido-pool-swap.vue'),
     'refund-all-dialog': () => import('@/modules/ido/dialogs/refund-all-dialog.vue'),
-    PoolCountdown
+    PoolCountdown,
+    VueMarkdown
   }
 })
 export default class IdoPoolDetail extends Vue {
@@ -385,10 +386,6 @@ export default class IdoPoolDetail extends Vue {
 
   viewOnBsc() {
     window.open(`https://bscscan.com/address/${this.vm.pool?.address}`, '_blank')
-  }
-
-  markdownToHtml() {
-    return marked(this.vm.description)
   }
 
   changeTab(tab) {
