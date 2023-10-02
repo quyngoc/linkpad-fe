@@ -1,8 +1,5 @@
 <template>
-  <div class="fill-height d-flex align-center justify-center" v-if="!vm.pool">
-    <v-progress-circular indeterminate color="primary" class="mx-auto"></v-progress-circular>
-  </div>
-  <v-container class="py-16" v-else>
+  <v-container class="py-16">
     <div v-if="vm.isAdmin && vm.pool.address" class="mt-n8 mb-4">
       <v-btn class="mr-4" depressed rounded @click="vm.exportBuyers()" outlined>
         Export csv
@@ -140,7 +137,6 @@
     </v-sheet>
 
     <!-- details -->
-
     <v-card class="mt-6" color="transparent">
       <v-tabs v-model="vm.tab" @change="changeTab" background-color="transparent" show-arrows>
         <v-tab :value="1">Details</v-tab>
@@ -226,7 +222,7 @@
           >
         </v-window-item>
         <v-window-item class="pa-6">
-          <div v-html="vm.description"></div>
+          <div v-html="markdownToHtml()"></div>
         </v-window-item>
         <v-window-item>
           <div class="pa-4">
@@ -330,6 +326,7 @@ import { Component, Vue, Watch, Provide, Ref } from 'vue-property-decorator'
 import { walletStore } from '@/stores/wallet-store'
 import { IdoPoolDetailViewModel } from '../viewmodels/ido-pool-detail-viewmodel'
 import PoolCountdown from '@/components/pool-countdown.vue'
+import { marked } from 'marked'
 
 @Observer
 @Component({
@@ -388,6 +385,10 @@ export default class IdoPoolDetail extends Vue {
 
   viewOnBsc() {
     window.open(`https://bscscan.com/address/${this.vm.pool?.address}`, '_blank')
+  }
+
+  markdownToHtml() {
+    return marked(this.vm.description)
   }
 
   changeTab(tab) {
