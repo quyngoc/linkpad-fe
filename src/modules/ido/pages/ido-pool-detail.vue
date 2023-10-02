@@ -226,7 +226,7 @@
           >
         </v-window-item>
         <v-window-item class="pa-6">
-          {{ vm.description }}
+          <div v-html="vm.description"></div>
         </v-window-item>
         <v-window-item>
           <div class="pa-4">
