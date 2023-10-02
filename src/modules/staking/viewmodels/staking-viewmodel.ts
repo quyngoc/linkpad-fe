@@ -134,7 +134,7 @@ export class StakingViewModel {
   }
 
   @asyncAction *getPendingReward() {
-    if (walletStore.account && this.userInfo.amount) {
+    if (walletStore.account && this.isStaked) {
       try {
         const pendingReward = yield this.stakingHandler?.getPendingReward(walletStore.account)
         this.pendingReward = pendingReward!
