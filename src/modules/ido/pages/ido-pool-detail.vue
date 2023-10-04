@@ -56,7 +56,7 @@
                     class="gradient-btn"
                     @click="joinPool"
                     :disabled="!vm.allowSwap"
-                    >{{ vm.isNotInWhitelisted ? 'You are NOT whitelisted' : 'Join Pool' }}</v-btn
+                    >{{ vm.isNotInWhitelisted ? 'You are NOT whitelisted' : 'Join' }}</v-btn
                   >
                 </connect-metamask>
               </div>
@@ -169,13 +169,13 @@
                   <div class="text-body-bold text-end" v-if="vm.poolState.isTBAStartDate">TBA</div>
                   <div class="text-body-bold text-end" v-else>{{ vm.tokenDistribution | datetime }}</div>
                 </div>
-                <!-- <div class="d-flex justify-space-between align-center ma-4">
-                  <div class="text-body light2--text">Min. Allocation</div>
+                <div class="d-flex justify-space-between align-center ma-4">
+                  <div class="text-body light2--text">Min Allocation</div>
                   <div class="text-body-bold text-end" v-if="!vm.minAllocation">TBA</div>
                   <div class="text-body-bold text-end" v-else>
                     {{ vm.minAllocation | round | formatNumber(2) }} {{ vm.tokenName }}
                   </div>
-                </div> -->
+                </div>
                 <div class="d-flex justify-space-between align-center ma-4">
                   <div class="text-body light2--text">Max Allocation</div>
                   <div class="text-body-bold text-end" v-if="!vm.maxAllocation">TBA</div>
@@ -210,16 +210,14 @@
                     {{ vm.tokenAddress }}
                   </div>
                 </div>
-                <div style="height: 1px;" class="gradient-btn"></div>
-
-                <!-- <div class="d-flex justify-space-between align-center ma-4">
+                <div class="d-flex justify-space-between align-center ma-4">
                   <div class="text-body light2--text">Participants</div>
                   <div class="text-body-bold" v-if="vm.hideParticipants">TBA</div>
                   <div class="text-body-bold text-end" v-else>{{ vm.participants }}</div>
-                </div> -->
-              </v-sheet>
-            </v-col></v-row
-          >
+                </div>
+                <div style="height: 1px;" class="gradient-btn"></div>
+              </v-sheet> </v-col
+          ></v-row>
         </v-window-item>
         <v-window-item class="pa-6">
           <VueMarkdown>{{ vm.description }}</VueMarkdown>

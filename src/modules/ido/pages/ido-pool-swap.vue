@@ -69,6 +69,9 @@
         >
           <template v-slot:append>
             <div class="d-flex align-center gap-1">
+              <v-btn depressed color="transparent" class="text-head4 cursor-pointer" @click="maxBnb">
+                Max
+              </v-btn>
               <trade-token-name :vm="vm" />
             </div>
           </template>

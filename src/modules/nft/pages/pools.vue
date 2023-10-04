@@ -98,7 +98,7 @@
                         <v-btn color="primary" dense class="text-none mr-6" v-if="isUpCommingPool(pool)"
                           >Read more</v-btn
                         >
-                        <v-btn color="primary" dense class="text-none mr-6" v-else>Join Pool</v-btn>
+                        <v-btn color="primary" dense class="text-none mr-6" v-else>Join</v-btn>
                       </router-link>
                       <a v-if="pool.mediumLink" target="_blank" :href="pool.mediumLink">
                         <v-img
